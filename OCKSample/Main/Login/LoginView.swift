@@ -29,11 +29,12 @@ struct LoginView: View {
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var signupLoginSegmentValue = 0
+    @State var email: String = ""
 
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("CareKit Sample App")
+            Text("Fit App")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .padding()
@@ -85,6 +86,12 @@ struct LoginView: View {
                         .background(.white)
                         .cornerRadius(20.0)
                         .shadow(radius: 10.0, x: 20, y: 10)
+
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
                 default:
                     EmptyView()
                 }
@@ -103,7 +110,8 @@ struct LoginView: View {
                                                username: usersname,
                                                password: password,
                                                firstName: firstName,
-                                               lastName: lastName)
+                                               lastName: lastName,
+                                               email: email)
                     }
                 default:
                     Task {
@@ -160,6 +168,7 @@ struct LoginView: View {
                                                                Color(tintColor)]),
                                    startPoint: .top,
                                    endPoint: .bottom))
+    //    .background(Color(TintColorKey.defaultValue))
     }
 }
 

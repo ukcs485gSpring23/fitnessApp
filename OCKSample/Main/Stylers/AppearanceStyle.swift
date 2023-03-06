@@ -10,8 +10,5 @@ import Foundation
 import CareKitUI
 
 struct AppearanceStyle: OCKAppearanceStyler {
-    var cornerRadius1: CGFloat { 50 }
-    var cornerRadius2: CGFloat { 50 }
-    
-    
+
 }
