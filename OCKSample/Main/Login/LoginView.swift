@@ -34,16 +34,16 @@ struct LoginView: View {
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("Fit App")
+            Text("CrFit")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .padding()
             // Change this image to something that represents your application
-            Image("exercise.jpg")
+            Image("crLogo.png")
                 .resizable()
                 .frame(width: 150, height: 150, alignment: .center)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color(.white), lineWidth: 4))
+               // .clipShape(Circle())
+                .overlay(Rectangle().stroke(Color(.black), lineWidth: 4))
                 .shadow(radius: 10)
                 .padding()
 
@@ -57,7 +57,7 @@ struct LoginView: View {
                 Text("Sign Up").tag(1)
             }
             .pickerStyle(.segmented)
-            .background(Color(tintColorFlip))
+            .background(Color(FontColorKey.defaultValue))
             .cornerRadius(20.0)
             .padding()
 
@@ -164,10 +164,15 @@ struct LoginView: View {
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
+        /*   .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
                                                                Color(tintColor)]),
-                                   startPoint: .top,
-                                   endPoint: .bottom))
+                                   startPoint: .center,
+                                   endPoint: .top))*/
+
+        .background(RadialGradient(gradient:
+                                    Gradient(colors: [Color(.lightGray),
+                                                      Color(.darkGray)]),
+                                   center: .center, startRadius: 150, endRadius: 300 ))
     //    .background(Color(TintColorKey.defaultValue))
     }
 }
