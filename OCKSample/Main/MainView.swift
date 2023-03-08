@@ -47,6 +47,7 @@ struct MainView: View {
             }
             path = [.tabs]
         })
+
     }
 }
 
