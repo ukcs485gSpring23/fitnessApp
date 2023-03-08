@@ -18,5 +18,17 @@ struct ColorStyler: OCKColorStyler {
     var tertiaryLabel: UIColor {
         TintColorKey.defaultValue
     }
+    var secondaryLabel: UIColor {
+        #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+
+    var separator: UIColor {
+        TintColorKey.defaultValue
+    }
+
+    var secondaryCustomGroupedBackground: UIColor {
+        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
+
     #endif
 }
