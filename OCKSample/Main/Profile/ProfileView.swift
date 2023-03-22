@@ -39,6 +39,27 @@ struct ProfileView: View {
                     .shadow(radius: 10.0, x: 20, y: 10)
             }
 
+            // Change this from saveProfile to add task
+            Button(action: {
+                Task {
+                    do {
+                        try await viewModel.saveProfile(firstName,
+                                                        last: lastName,
+                                                        birth: birthday)
+                    } catch {
+                        Logger.profile.error("Error saving task: \(error)")
+                    }
+                }
+            }, label: {
+                Text("Add Task")
+                    .font(.headline)
+                    .foregroundColor(.red)
+                    .padding()
+                    .frame(width: 300, height: 50)
+            })
+            .background(Color(.black))
+            .cornerRadius(15)
+
             Button(action: {
                 Task {
                     do {
@@ -52,11 +73,11 @@ struct ProfileView: View {
             }, label: {
                 Text("Save Profile")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.red)
                     .padding()
                     .frame(width: 300, height: 50)
             })
-            .background(Color(.green))
+            .background(Color(.black))
             .cornerRadius(15)
 
             // Notice that "action" is a closure (which is essentially
@@ -68,11 +89,11 @@ struct ProfileView: View {
             }, label: {
                 Text("Log Out")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.red)
                     .padding()
                     .frame(width: 300, height: 50)
             })
-            .background(Color(.red))
+            .background(Color(.black))
             .cornerRadius(15)
         }.onReceive(viewModel.$patient) { patient in
             if let currentFirstName = patient?.name.givenName {
