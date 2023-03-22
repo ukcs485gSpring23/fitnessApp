@@ -2,7 +2,7 @@
 //  OCKSynchronizedStoreManager.swift
 //  OCKSample
 //
-//  Created by  on 3/21/23.
+//  Created by Corey Baker on 3/21/23.
 //  Copyright © 2023 Network Reconnaissance Lab. All rights reserved.
 //
 
@@ -16,6 +16,7 @@ extension OCKSynchronizedStoreManager {
 
     /**
       Adds an `OCKAnyCarePlan`*asynchronously*  to `OCKStore` if it has not been added already.
+
       - parameter carePlans: The array of `OCKAnyCarePlan`'s to be added to the `OCKStore`.
       - parameter patientUUID: The uuid of the `OCKPatient` to tie to the `OCKCarePlan`. Defaults to nil.
       - throws: An error if there was a problem adding the missing `OCKAnyCarePlan`'s.
@@ -41,7 +42,7 @@ extension OCKSynchronizedStoreManager {
                 carePlanNotInStore.append(mutableCarePlan)
             }
         }
-        /Volumes/Temporary_Storage/mjli235/xcode_dev/healthApp/secondMidterm/midterm-Mjli235/OCKSample/Extensions/OCKPatient+Parse.swift
+
         // Only add if there's a new Care Plan
         if carePlanNotInStore.count > 0 {
             do {
