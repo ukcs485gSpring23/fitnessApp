@@ -13,6 +13,7 @@ import os.log
 class CareKitTaskViewModel: ObservableObject {
     @Published var title = ""
     @Published var instructions = ""
+    @Published var selectedSchedule: Schedules = .daily
     @Published var selectedCard: CareKitCard = .button
     @Published var error: AppError? {
         willSet {
@@ -28,15 +29,36 @@ class CareKitTaskViewModel: ObservableObject {
             error = AppError.couldntBeUnwrapped
             return
         }
+
+        var chosenSchedule: OCKSchedule
+        switch selectedSchedule {
+        case .daily:
+            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+        case .everyOtherDay:
+            let element = OCKScheduleElement(start: Date(),
+                                             end: nil,
+                                             interval: DateComponents(day: 2),
+                                             text: nil,
+                                             targetValues: [OCKOutcomeValue(1000, units: "goals")],
+                                             duration: .allDay)
+            chosenSchedule = OCKSchedule(composing: [element])
+        case .weekly:
+            let element = OCKScheduleElement(start: Date(),
+                                             end: nil,
+                                             interval: DateComponents(day: 7),
+                                             text: nil,
+                                             targetValues: [OCKOutcomeValue(1000, units: "goals")],
+                                             duration: .allDay)
+            chosenSchedule = OCKSchedule(composing: [element])
+        default:
+            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+        }
+
         let uniqueId = UUID().uuidString // Create a unique id for each task
         var task = OCKTask(id: uniqueId,
                            title: title,
                            carePlanUUID: nil,
-                           schedule: .dailyAtTime(hour: 0,
-                                                  minutes: 0,
-                                                  start: Date(),
-                                                  end: nil,
-                                                  text: nil))
+                           schedule: chosenSchedule)
         task.instructions = instructions
         task.card = selectedCard
         do {

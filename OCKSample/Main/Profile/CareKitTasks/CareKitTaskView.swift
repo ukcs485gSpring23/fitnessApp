@@ -23,6 +23,13 @@ struct CareKitTaskView: View {
                             Text(item.rawValue)
                         }
                     }
+
+                    Picker("Task Schedule", selection: $viewModel.selectedSchedule) {
+                        ForEach(Schedules.allCases) { item in
+                            Text(item.rawValue)
+                        }
+                    }
+
                     Section("Task") {
                         Button("Add") {
                             Task {

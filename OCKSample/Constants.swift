@@ -98,6 +98,13 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
 }
 
+enum Schedules: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case daily = "Daily"
+    case weekly = "Weekly"
+    case everyOtherDay = "Every Other Day"
+}
+
 enum TaskID {
     static let doxylamine = "doxylamine"
     static let nausea = "nausea"
