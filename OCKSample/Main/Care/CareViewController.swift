@@ -189,7 +189,6 @@ class CareViewController: OCKDailyPageViewController {
                 storeManager: self.storeManager)
                 .padding([.vertical], 20)
                 .careKitStyle(CustomStylerKey.defaultValue)
-
             return [view.formattedHostingController()]
         case .instruction:
             return [OCKInstructionsTaskViewController(task: task,

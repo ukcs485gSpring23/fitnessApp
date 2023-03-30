@@ -104,9 +104,9 @@ class CareKitTaskViewModel: ObservableObject {
                                              title: title,
                                              carePlanUUID: nil,
                                              schedule: chosenSchedule,
-                                             healthKitLinkage: .init(quantityIdentifier: .electrodermalActivity,
-                                                                     quantityType: .discrete,
-                                                                     unit: .count()))
+                                             healthKitLinkage: .init(quantityIdentifier: .activeEnergyBurned,
+                                                                     quantityType: .cumulative,
+                                                                     unit: .largeCalorie()))
         healthKitTask.instructions = instructions
         healthKitTask.card = selectedCard
         do {
