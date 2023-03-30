@@ -134,7 +134,7 @@ extension OCKStore {
         stretch.impactsAdherence = true
         stretch.asset = "figure.walk"
 
-        try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
+      //  try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
 
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",
