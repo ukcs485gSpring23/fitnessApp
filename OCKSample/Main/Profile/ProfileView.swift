@@ -13,6 +13,7 @@ import CareKit
 import os.log
 
 struct ProfileView: View {
+    @EnvironmentObject private var appDelegate: AppDelegate
     @StateObject var viewModel = ProfileViewModel()
     @ObservedObject var loginViewModel: LoginViewModel
     @State var firstName = ""
@@ -20,60 +21,89 @@ struct ProfileView: View {
     @State var birthday = Date()
 
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                TextField("First Name", text: $firstName)
-                    .padding()
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
+            VStack {
+                VStack(alignment: .leading) {
+                    TextField("First Name", text: $firstName)
+                        .padding()
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
 
-                TextField("Last Name", text: $lastName)
-                    .padding()
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
+                    TextField("Last Name", text: $lastName)
+                        .padding()
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
 
-                DatePicker("Birthday", selection: $birthday, displayedComponents: [DatePickerComponents.date])
-                    .padding()
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
-            }
+                    DatePicker("Birthday", selection: $birthday, displayedComponents: [DatePickerComponents.date])
+                        .padding()
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+                }
 
-            Button(action: {
-                Task {
-                    do {
-                        try await viewModel.saveProfile(firstName,
-                                                        last: lastName,
-                                                        birth: birthday)
-                    } catch {
-                        Logger.profile.error("Error saving profile: \(error.localizedDescription)")
+                // Change this from saveProfile to add task
+                NavigationLink(destination: CareKitTaskView(), label: {
+                    Text("Add Workout Goal")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                })
+                .background(Color(.black))
+                .cornerRadius(15)
+
+               /* Button(action: {
+                    Task {
+                        do {
+                            // Code here for create task
+                        } catch {
+                            Logger.profile.error("Error saving task: \(error)")
+                        }
                     }
-                }
-            }, label: {
-                Text("Save Profile")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 300, height: 50)
-            })
-            .background(Color(.green))
-            .cornerRadius(15)
+                }, label: {
+                    Text("Add Task")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                })
+                .background(Color(.black))
+                .cornerRadius(15)*/
 
-            // Notice that "action" is a closure (which is essentially
-            // a function as argument like we discussed in class)
-            Button(action: {
-                Task {
-                    await loginViewModel.logout()
-                }
-            }, label: {
-                Text("Log Out")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 300, height: 50)
-            })
-            .background(Color(.red))
-            .cornerRadius(15)
-        }.onReceive(viewModel.$patient, perform: { patient in
+                Button(action: {
+                    Task {
+                        do {
+                            try await viewModel.saveProfile(firstName,
+                                                            last: lastName,
+                                                            birth: birthday)
+                        } catch {
+                            Logger.profile.error("Error saving profile: \(error)")
+                        }
+                    }
+                }, label: {
+                    Text("Save Profile")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                })
+                .background(Color(.black))
+                .cornerRadius(15)
+
+                // Notice that "action" is a closure (which is essentially
+                // a function as argument like we discussed in class)
+                Button(action: {
+                    Task {
+                        await loginViewModel.logout()
+                    }
+                }, label: {
+                    Text("Log Out")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                })
+                .background(Color(.black))
+                .cornerRadius(15)
+            }.onReceive(viewModel.$patient) { patient in
             if let currentFirstName = patient?.name.givenName {
                 firstName = currentFirstName
             }
@@ -83,7 +113,9 @@ struct ProfileView: View {
             if let currentBirthday = patient?.birthday {
                 birthday = currentBirthday
             }
-        })
+        }.onReceive(appDelegate.$storeManager) { newStoreManager in
+            viewModel.updateStoreManager(newStoreManager)
+        }
     }
 }
 
