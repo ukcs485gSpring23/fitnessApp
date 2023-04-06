@@ -13,79 +13,62 @@ import CareKit
 import os.log
 
 struct ProfileView: View {
-    @EnvironmentObject private var appDelegate: AppDelegate
+    @Environment(\.tintColor) private var tintColor
     @StateObject var viewModel = ProfileViewModel()
     @ObservedObject var loginViewModel: LoginViewModel
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var birthday = Date()
 
     var body: some View {
+        NavigationView {
             VStack {
-                VStack(alignment: .leading) {
-                    TextField("First Name", text: $firstName)
-                        .padding()
-                        .cornerRadius(20.0)
-                        .shadow(radius: 10.0, x: 20, y: 10)
+                VStack {
+                    ProfileImageView(viewModel: viewModel)
+                    Form {
+                        Section(header: Text("About")) {
+                            TextField("First Name", text: $viewModel.firstName)
+                            TextField("Last Name", text: $viewModel.lastName)
+                            DatePicker("Birthday",
+                                       selection: $viewModel.birthday,
+                                       displayedComponents: [DatePickerComponents.date])
+                            Picker(selection: $viewModel.sex,
+                                   label: Text("Sex")) {
+                                Text(OCKBiologicalSex.female.rawValue).tag(OCKBiologicalSex.female)
+                                Text(OCKBiologicalSex.male.rawValue).tag(OCKBiologicalSex.male)
+                                Text(viewModel.sex.rawValue)
+                                    .tag(OCKBiologicalSex.other(viewModel.sexOtherField))
+                            }
+                        }
 
-                    TextField("Last Name", text: $lastName)
-                        .padding()
-                        .cornerRadius(20.0)
-                        .shadow(radius: 10.0, x: 20, y: 10)
-
-                    DatePicker("Birthday", selection: $birthday, displayedComponents: [DatePickerComponents.date])
-                        .padding()
-                        .cornerRadius(20.0)
-                        .shadow(radius: 10.0, x: 20, y: 10)
-                }
-
-                // Change this from saveProfile to add task
-                NavigationLink(destination: CareKitTaskView(), label: {
-                    Text("Add Workout Goal")
-                        .font(.headline)
-                        .foregroundColor(.red)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                })
-                .background(Color(.black))
-                .cornerRadius(15)
-
-               /* Button(action: {
-                    Task {
-                        do {
-                            // Code here for create task
-                        } catch {
-                            Logger.profile.error("Error saving task: \(error)")
+                        Section(header: Text("Contact")) {
+                            TextField("Street", text: $viewModel.street)
+                            TextField("City", text: $viewModel.city)
+                            TextField("State", text: $viewModel.state)
+                            TextField("Postal code", text: $viewModel.zipcode)
                         }
                     }
-                }, label: {
-                    Text("Add Task")
-                        .font(.headline)
-                        .foregroundColor(.red)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                })
-                .background(Color(.black))
-                .cornerRadius(15)*/
+                }
+
+                NavigationLink(destination: CareKitTaskView(), label: {
+                                    Text("Add Workout Goal")
+                                        .font(.headline)
+                                        .foregroundColor(.red)
+                                        .padding()
+                                        .frame(width: 300, height: 50)
+                                })
+                                .background(Color(.black))
+                                .cornerRadius(15)
 
                 Button(action: {
                     Task {
-                        do {
-                            try await viewModel.saveProfile(firstName,
-                                                            last: lastName,
-                                                            birth: birthday)
-                        } catch {
-                            Logger.profile.error("Error saving profile: \(error)")
-                        }
+                        await viewModel.saveProfile()
                     }
                 }, label: {
                     Text("Save Profile")
                         .font(.headline)
-                        .foregroundColor(.red)
+                        .foregroundColor(.white)
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.black))
+                .background(Color(.green))
                 .cornerRadius(15)
 
                 // Notice that "action" is a closure (which is essentially
@@ -97,24 +80,41 @@ struct ProfileView: View {
                 }, label: {
                     Text("Log Out")
                         .font(.headline)
-                        .foregroundColor(.red)
+                        .foregroundColor(.white)
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.black))
+                .background(Color(.red))
                 .cornerRadius(15)
-            }.onReceive(viewModel.$patient) { patient in
-            if let currentFirstName = patient?.name.givenName {
-                firstName = currentFirstName
             }
-            if let currentLastName = patient?.name.familyName {
-                lastName = currentLastName
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("My Contact") {
+                        viewModel.isPresentingContact = true
+                    }
+                    .sheet(isPresented: $viewModel.isPresentingContact) {
+                        MyContactView()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Add Task") {
+                        viewModel.isPresentingAddTask = true
+                    }
+                    .sheet(isPresented: $viewModel.isPresentingAddTask) {
+                        CareKitTaskView()
+                    }
+                }
             }
-            if let currentBirthday = patient?.birthday {
-                birthday = currentBirthday
+            .sheet(isPresented: $viewModel.isPresentingImagePicker) {
+                ImagePicker(image: $viewModel.profileUIImage)
             }
-        }.onReceive(appDelegate.$storeManager) { newStoreManager in
-            viewModel.updateStoreManager(newStoreManager)
+            .alert(isPresented: $viewModel.isShowingSaveAlert) {
+                return Alert(title: Text("Update"),
+                             message: Text(viewModel.alertMessage),
+                             dismissButton: .default(Text("Ok"), action: {
+                                viewModel.isShowingSaveAlert = false
+                             }))
+            }
         }
     }
 }
