@@ -88,7 +88,7 @@ class ProfileViewModel: ObservableObject {
     }
     private var contact: OCKContact? // TODOx: need to publish contact updates like patient
     private(set) var storeManager: OCKSynchronizedStoreManager
-    private(set) var alertMessage = "All changs saved successfully!"
+    private(set) var alertMessage = "All changes saved successfully!"
 
     // MARK: Private read/write properties
     private var isSettingProfilePictureForFirstTime = true
