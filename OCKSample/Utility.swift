@@ -118,7 +118,7 @@ class Utility {
                                          givenName: "Preview",
                                          familyName: "Patient")
                 _ = try? await store.addPatient(patient)
-                try? await store.populateSampleData()
+                try? await store.populateSampleData(patient.uuid)
             }
         }
         return .init(wrapping: store)

@@ -43,7 +43,7 @@ extension OCKStore {
         }
     }
 
-    func populateCarePlans(patientUUID: UUID? = nil) async throws {
+    func populateCarePlans(patientUUID: UUID? = nil) async throws -> OCKCarePlan {
             let checkInCarePlan = OCKCarePlan(id: CarePlanID.checkIn.rawValue,
                                               title: "Check in Care Plan",
                                               patientUUID: patientUUID)
@@ -52,6 +52,7 @@ extension OCKStore {
                 .storeManager
                 .addCarePlansIfNotPresent([checkInCarePlan],
                                           patientUUID: patientUUID)
+        return checkInCarePlan
         }
 
     func addContactsIfNotPresent(_ contacts: [OCKContact]) async throws {
@@ -85,7 +86,7 @@ extension OCKStore {
     // Adds tasks and contacts into the store
     func populateSampleData(_ patientUUID: UUID? = nil) async throws {
 
-        try await populateCarePlans(patientUUID: patientUUID)
+        let checkInCarePlan = try await populateCarePlans(patientUUID: patientUUID)
         let thisMorning = Calendar.current.startOfDay(for: Date())
         guard let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning),
                       let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo),
@@ -121,7 +122,7 @@ extension OCKStore {
 
         var nausea = OCKTask(id: TaskID.nausea,
                              title: "Track your nausea",
-                             carePlanUUID: nil,
+                             carePlanUUID: checkInCarePlan.uuid,
                              schedule: nauseaSchedule)
         nausea.impactsAdherence = false
         nausea.instructions = "Tap the button below anytime you experience nausea."
@@ -133,7 +134,7 @@ extension OCKStore {
         let kegelSchedule = OCKSchedule(composing: [kegelElement])
         var kegels = OCKTask(id: TaskID.kegels,
                              title: "Kegel Exercises",
-                             carePlanUUID: nil,
+                             carePlanUUID: checkInCarePlan.uuid,
                              schedule: kegelSchedule)
         kegels.impactsAdherence = true
         kegels.instructions = "Perform kegel exercies"
@@ -144,7 +145,7 @@ extension OCKStore {
         let stretchSchedule = OCKSchedule(composing: [stretchElement])
         var stretch = OCKTask(id: TaskID.stretch,
                               title: "Stretch",
-                              carePlanUUID: nil,
+                              carePlanUUID: checkInCarePlan.uuid,
                               schedule: stretchSchedule)
         stretch.impactsAdherence = true
         stretch.asset = "figure.walk"
@@ -154,7 +155,7 @@ extension OCKStore {
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",
                                   familyName: "Daniels",
-                                  carePlanUUID: nil)
+                                  carePlanUUID: checkInCarePlan.uuid)
         contact1.asset = "JaneDaniels"
         contact1.title = "Family Practice Doctor"
         contact1.role = "Dr. Daniels is a family practice doctor with 8 years of experience."
@@ -172,7 +173,7 @@ extension OCKStore {
         }()
 
         var contact2 = OCKContact(id: "matthew", givenName: "Matthew",
-                                  familyName: "Reiff", carePlanUUID: nil)
+                                  familyName: "Reiff", carePlanUUID: checkInCarePlan.uuid)
         contact2.asset = "MatthewReiff"
         contact2.title = "OBGYN"
         contact2.role = "Dr. Reiff is an OBGYN with 13 years of experience."

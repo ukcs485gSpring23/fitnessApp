@@ -21,6 +21,7 @@ class ProfileViewModel: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var birthday = Date()
+    @Published var allergies = ""
     @Published var sex: OCKBiologicalSex = .other("other")
     @Published var sexOtherField = "other"
     @Published var note = ""
@@ -28,6 +29,10 @@ class ProfileViewModel: ObservableObject {
     @Published var city = ""
     @Published var state = ""
     @Published var zipcode = ""
+    @Published var emailAddresses = ""
+    @Published var otherContactInfo = ""
+    @Published var messagingNumbers = ""
+    @Published var phoneNumbers = ""
     @Published var isShowingSaveAlert = false
     @Published var isPresentingAddTask = false
     @Published var isPresentingContact = false
@@ -247,7 +252,7 @@ class ProfileViewModel: ObservableObject {
 extension ProfileViewModel {
     @MainActor
     func saveProfile() async {
-        alertMessage = "All changs saved successfully!"
+        alertMessage = "All changes saved successfully!"
         do {
             try await savePatient()
             try await saveContact()
@@ -258,6 +263,7 @@ extension ProfileViewModel {
     }
 
     @MainActor
+    // swiftlint:disable cyclomatic_complexity
     func savePatient() async throws {
         if var patientToUpdate = patient {
             // If there is a currentPatient that was fetched, check to see if any of the fields changed
@@ -281,6 +287,11 @@ extension ProfileViewModel {
             if patient?.sex != sex {
                 patientHasBeenUpdated = true
                 patientToUpdate.sex = sex
+            }
+
+            if patient?.allergies != [allergies] {
+                patientHasBeenUpdated = true
+                patientToUpdate.allergies = [allergies]
             }
 
             let notes = [OCKNote(author: firstName,
@@ -349,6 +360,34 @@ extension ProfileViewModel {
             if contact?.address != potentialAddress {
                 contactHasBeenUpdated = true
                 contactToUpdate.address = potentialAddress
+            }
+
+            let potentialEmailAddresses = OCKLabeledValue(label: "Email", value: emailAddresses)
+
+            if contact?.emailAddresses != [potentialEmailAddresses] {
+                contactHasBeenUpdated = true
+                contactToUpdate.emailAddresses = [potentialEmailAddresses]
+            }
+
+            let potentialPhoneNumbers = OCKLabeledValue(label: "Phone", value: phoneNumbers)
+
+            if contact?.phoneNumbers != [potentialPhoneNumbers] {
+                contactHasBeenUpdated = true
+                contactToUpdate.phoneNumbers = [potentialPhoneNumbers]
+            }
+
+            let potentialMessagingNumbers = OCKLabeledValue(label: "Messaging", value: messagingNumbers)
+
+            if contact?.messagingNumbers != [potentialMessagingNumbers] {
+                contactHasBeenUpdated = true
+                contactToUpdate.messagingNumbers = [potentialMessagingNumbers]
+            }
+
+            let potentialOtherContactInfo = OCKLabeledValue(label: "OtherInfo", value: otherContactInfo)
+
+            if contact?.otherContactInfo != [potentialOtherContactInfo] {
+                contactHasBeenUpdated = true
+                contactToUpdate.otherContactInfo = [potentialOtherContactInfo]
             }
 
             if contactHasBeenUpdated {

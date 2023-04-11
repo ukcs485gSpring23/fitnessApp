@@ -36,6 +36,7 @@ struct ProfileView: View {
                                 Text(viewModel.sex.rawValue)
                                     .tag(OCKBiologicalSex.other(viewModel.sexOtherField))
                             }
+                            TextField("Allergies", text: $viewModel.allergies)
                         }
 
                         Section(header: Text("Contact")) {
@@ -43,6 +44,11 @@ struct ProfileView: View {
                             TextField("City", text: $viewModel.city)
                             TextField("State", text: $viewModel.state)
                             TextField("Postal code", text: $viewModel.zipcode)
+                            TextField("Email Addresses", text: $viewModel.emailAddresses)
+                            TextField("Messaging Numbers", text: $viewModel.messagingNumbers)
+                            TextField("Phone Numbers", text: $viewModel.phoneNumbers)
+                            TextField("Other Contact Info", text: $viewModel.otherContactInfo)
+
                         }
                     }
                 }
@@ -64,11 +70,11 @@ struct ProfileView: View {
                 }, label: {
                     Text("Save Profile")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.red)
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.green))
+                .background(Color(.black))
                 .cornerRadius(15)
 
                 // Notice that "action" is a closure (which is essentially
@@ -80,11 +86,11 @@ struct ProfileView: View {
                 }, label: {
                     Text("Log Out")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.red)
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.red))
+                .background(Color(.black))
                 .cornerRadius(15)
             }
             .toolbar {

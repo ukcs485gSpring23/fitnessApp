@@ -55,6 +55,7 @@ class CareKitTaskViewModel: ObservableObject {
         }
 
         let uniqueId = UUID().uuidString // Create a unique id for each task
+
         var task = OCKTask(id: uniqueId,
                            title: title,
                            carePlanUUID: nil,
