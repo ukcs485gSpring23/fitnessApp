@@ -86,7 +86,59 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
-    private var contact: OCKContact? // TODOx: need to publish contact updates like patient
+
+    @Published private var contact: OCKContact? {
+        willSet {
+            if let currentStreet = newValue?.address?.street {
+                street = currentStreet
+            } else {
+                street = ""
+            }
+
+            if let currentCity = newValue?.address?.city {
+                city = currentCity
+            } else {
+                city = ""
+            }
+
+            if let currentPostal = newValue?.address?.postalCode {
+                zipcode = currentPostal
+            } else {
+                zipcode = ""
+            }
+
+            if let currentState = newValue?.address?.state {
+                state = currentState
+            } else {
+                state = ""
+            }
+
+            if let currentEmail = newValue?.emailAddresses {
+                emailAddresses = currentEmail[0].value
+            } else {
+                emailAddresses = ""
+            }
+
+            if let currentMessaging = newValue?.messagingNumbers {
+                messagingNumbers = currentMessaging[0].value
+            } else {
+                messagingNumbers = ""
+            }
+
+            if let currentPhone = newValue?.phoneNumbers {
+                phoneNumbers = currentPhone[0].value
+            } else {
+                phoneNumbers = ""
+            }
+
+            if let currentOtherContactInfo = newValue?.otherContactInfo {
+                otherContactInfo = currentOtherContactInfo[0].value
+            } else {
+                otherContactInfo = ""
+            }
+
+        }
+    } // TODOx: need to publish contact updates like patient
     private(set) var storeManager: OCKSynchronizedStoreManager
     private(set) var alertMessage = "All changes saved successfully!"
 
