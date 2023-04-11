@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CareKit
 import CareKitStore
 import os.log
 
@@ -21,6 +22,24 @@ class CareKitTaskViewModel: ObservableObject {
                 self.objectWillChange.send()
             }
         }
+    }
+
+    public let storeManager: OCKSynchronizedStoreManager
+
+    init(storeManager: OCKSynchronizedStoreManager? = nil) {
+        self.storeManager = storeManager ?? StoreManagerKey.defaultValue
+    }
+
+    func getCarePlanID() async -> String? {
+        guard (try? await User.current()) != nil,
+              let personUUIDString = try? await Utility.getRemoteClockUUID().uuidString else {
+            return nil
+        }
+        var query = OCKCarePlanQuery(for: Date())
+        query.patientIDs = [personUUIDString]
+        query.ids = [CarePlanID.checkIn.rawValue]
+        var foundCarePlan = try? await storeManager.store.fetchAnyCarePlans(query: query)
+        return foundCarePlan?[0].remoteID
     }
 
     // MARK: Intents
@@ -55,6 +74,14 @@ class CareKitTaskViewModel: ObservableObject {
         }
 
         let uniqueId = UUID().uuidString // Create a unique id for each task
+
+        /*Update to work
+        var CPID: String? = nil
+        let tempCPID = await getCarePlanID()
+        if let unwrap = tempCPID {
+            CPID = unwrap
+        }*/
+
         var task = OCKTask(id: uniqueId,
                            title: title,
                            carePlanUUID: nil,

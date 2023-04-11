@@ -117,6 +117,11 @@ enum TaskID {
     }
 }
 
+enum CarePlanID: String {
+    case health // Add custom id's for your Care Plans, these are examples
+    case checkIn
+}
+
 enum UserType: String, Codable {
     case patient                           = "Patient"
     case none                              = "None"
