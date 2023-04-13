@@ -84,6 +84,14 @@
 		789FEDF729B9249000119B8D /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FEDF529B9249000119B8D /* AnimationStyle.swift */; };
 		78B1572529CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B1572429CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift */; };
 		78B1572629CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B1572429CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift */; };
+		78CE28D129E896D700489DB3 /* ResearchKit in Frameworks */ = {isa = PBXBuildFile; productRef = 78CE28D029E896D700489DB3 /* ResearchKit */; };
+		78CE28D429E897FE00489DB3 /* Surveyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D329E897FE00489DB3 /* Surveyable.swift */; };
+		78CE28D529E897FE00489DB3 /* Surveyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D329E897FE00489DB3 /* Surveyable.swift */; };
+		78CE28D729E8989F00489DB3 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D629E8989F00489DB3 /* Survey.swift */; };
+		78CE28D829E8989F00489DB3 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D629E8989F00489DB3 /* Survey.swift */; };
+		78CE28DA29E898E500489DB3 /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D929E898E500489DB3 /* Onboard.swift */; };
+		78CE28DB29E898E500489DB3 /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28D929E898E500489DB3 /* Onboard.swift */; };
+		78CE28E129E89B4700489DB3 /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE28E029E89B4700489DB3 /* Consent.swift */; };
 		78DF948929B14F3100095546 /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF948829B14F3100095546 /* AppearanceStyle.swift */; };
 		78DF948A29B14F3100095546 /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF948829B14F3100095546 /* AppearanceStyle.swift */; };
 		9103AA5227B8C913002C921E /* FontColorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F03AA727860E7700E5AFB4 /* FontColorKey.swift */; };
@@ -212,6 +220,10 @@
 		789FEDF229B91DD500119B8D /* DimensionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionStyle.swift; sourceTree = "<group>"; };
 		789FEDF529B9249000119B8D /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		78B1572429CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OCKHealthKitTask+Custom.swift"; sourceTree = "<group>"; };
+		78CE28D329E897FE00489DB3 /* Surveyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surveyable.swift; sourceTree = "<group>"; };
+		78CE28D629E8989F00489DB3 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		78CE28D929E898E500489DB3 /* Onboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard.swift; sourceTree = "<group>"; };
+		78CE28E029E89B4700489DB3 /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		78DF948829B14F3100095546 /* AppearanceStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceStyle.swift; sourceTree = "<group>"; };
 		9169381A271B64E100A634ED /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		9169381C271B650700A634ED /* ColorStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyler.swift; sourceTree = "<group>"; };
@@ -251,6 +263,7 @@
 			files = (
 				70202EC12807333900CF73FB /* CareKit in Frameworks */,
 				918FDEAF271B3F8F0045A0EF /* ParseCareKit in Frameworks */,
+				78CE28D129E896D700489DB3 /* ResearchKit in Frameworks */,
 				70202EC52807333A00CF73FB /* CareKitUI in Frameworks */,
 				78074C4129CA48D5006D78A9 /* CareKitUtilities in Frameworks */,
 				708542F9276687F90029E888 /* HealthKit.framework in Frameworks */,
@@ -323,6 +336,7 @@
 		703088772582727500FFABB6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				78CE28D229E897D600489DB3 /* Surveys */,
 				70221F2728D7809800971195 /* MainTabView.swift */,
 				7036E4D2256EBE35006E9A3C /* MainView.swift */,
 				70308878258272CD00FFABB6 /* Care */,
@@ -453,6 +467,24 @@
 			path = MyContact;
 			sourceTree = "<group>";
 		};
+		78CE28D229E897D600489DB3 /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				78CE28D329E897FE00489DB3 /* Surveyable.swift */,
+				78CE28D629E8989F00489DB3 /* Survey.swift */,
+				78CE28D929E898E500489DB3 /* Onboard.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
+		78CE28DC29E89B1B00489DB3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				78CE28E029E89B4700489DB3 /* Consent.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		91693819271B64CB00A634ED /* Stylers */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +603,7 @@
 				7036E63F25717F85006E9A3C /* Constants.swift */,
 				70F0EFE728C2EC050005B5A2 /* OCKSampleApp.swift */,
 				91693821271B897200A634ED /* Utility.swift */,
+				78CE28DC29E89B1B00489DB3 /* Onboarding */,
 				918FDEC1271B4E710045A0EF /* Environment */,
 				918FDEBA271B4DF60045A0EF /* Extensions */,
 				703088772582727500FFABB6 /* Main */,
@@ -642,6 +675,7 @@
 				70202EC22807333900CF73FB /* CareKitFHIR */,
 				70202EC42807333A00CF73FB /* CareKitUI */,
 				78074C4029CA48D5006D78A9 /* CareKitUtilities */,
+				78CE28D029E896D700489DB3 /* ResearchKit */,
 			);
 			productName = CareKitDemoApp;
 			productReference = E72B2C06226939E3009A9438 /* OCKSample.app */;
@@ -683,6 +717,7 @@
 				918FDEAD271B3F8F0045A0EF /* XCRemoteSwiftPackageReference "ParseCareKit" */,
 				70202EBF2807333900CF73FB /* XCRemoteSwiftPackageReference "CareKit" */,
 				78074C3F29CA48D5006D78A9 /* XCRemoteSwiftPackageReference "CareKitUtilities" */,
+				78CE28CF29E896D700489DB3 /* XCRemoteSwiftPackageReference "ResearchKit" */,
 			);
 			productRefGroup = E72B2C07226939E3009A9438 /* Products */;
 			projectDirPath = "";
@@ -767,6 +802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CE28D829E8989F00489DB3 /* Survey.swift in Sources */,
 				70F921B327CAC16E00368CEC /* LocalSyncSessionDelegate.swift in Sources */,
 				78DF948A29B14F3100095546 /* AppearanceStyle.swift in Sources */,
 				70221F3928D8C10800971195 /* StoreManagerKey.swift in Sources */,
@@ -774,10 +810,12 @@
 				918FDEB8271B49060045A0EF /* Logger.swift in Sources */,
 				91AD923B24A4C42D00925D4D /* CareView.swift in Sources */,
 				70F921A927CA9A4000368CEC /* CustomStylerKey.swift in Sources */,
+				78CE28D529E897FE00489DB3 /* Surveyable.swift in Sources */,
 				7075151E28DE1A8300A57A0C /* MainView.swift in Sources */,
 				70A98D62278A2683009B58F2 /* Styler.swift in Sources */,
 				78074C4C29CA4E1A006D78A9 /* OCKSynchronizedStoreManager.swift in Sources */,
 				91693818271B5E1600A634ED /* Constants.swift in Sources */,
+				78CE28DB29E898E500489DB3 /* Onboard.swift in Sources */,
 				7075152028DE1BB400A57A0C /* LoginView.swift in Sources */,
 				70F921B227CAC16E00368CEC /* RemoteSessionDelegate.swift in Sources */,
 				70221F2F28D7CDE400971195 /* AppDelegate+ParseRemoteDelegate.swift in Sources */,
@@ -814,6 +852,7 @@
 				78B1572529CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift in Sources */,
 				7845A84E29DF685100690F3C /* ProfileImageView.swift in Sources */,
 				E7440E4F229477F7007AD30A /* CareViewController.swift in Sources */,
+				78CE28D729E8989F00489DB3 /* Survey.swift in Sources */,
 				78074C4729CA4D4C006D78A9 /* CareKitTaskView.swift in Sources */,
 				918FDEB5271B40590045A0EF /* Installation.swift in Sources */,
 				78DF948929B14F3100095546 /* AppearanceStyle.swift in Sources */,
@@ -831,6 +870,7 @@
 				7845A85029DF6DD100690F3C /* ImagePicker.swift in Sources */,
 				789FEDF329B91DD500119B8D /* DimensionStyle.swift in Sources */,
 				70221F3428D8ABBE00971195 /* AppDelegate+UIApplicationDelegate.swift in Sources */,
+				78CE28DA29E898E500489DB3 /* Onboard.swift in Sources */,
 				9169381D271B650700A634ED /* ColorStyler.swift in Sources */,
 				E72B2C0A226939E3009A9438 /* AppDelegate.swift in Sources */,
 				7036E4C4256E0A48006E9A3C /* CareView.swift in Sources */,
@@ -844,12 +884,14 @@
 				918FDEB7271B41FF0045A0EF /* Logger.swift in Sources */,
 				789FEDF629B9249000119B8D /* AnimationStyle.swift in Sources */,
 				70221F2A28D7BE0600971195 /* AppDelegate+ParseRemoteDelegate.swift in Sources */,
+				78CE28D429E897FE00489DB3 /* Surveyable.swift in Sources */,
 				7036E4D3256EBE35006E9A3C /* MainView.swift in Sources */,
 				78074C4929CA4DAB006D78A9 /* CareKitTaskViewModel.swift in Sources */,
 				918FDEC5271B4EA70045A0EF /* StoreManagerKey.swift in Sources */,
 				91693822271B897200A634ED /* Utility.swift in Sources */,
 				707CC718254DA91900116728 /* OCKLocalization.swift in Sources */,
 				E7C37849228F887800E982D8 /* TipView.swift in Sources */,
+				78CE28E129E89B4700489DB3 /* Consent.swift in Sources */,
 				7845A84A29DF67CA00690F3C /* MyContactView.swift in Sources */,
 				70077597252228E900EC0EDA /* User.swift in Sources */,
 				78074C4B29CA4E1A006D78A9 /* OCKSynchronizedStoreManager.swift in Sources */,
@@ -1286,6 +1328,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		78CE28CF29E896D700489DB3 /* XCRemoteSwiftPackageReference "ResearchKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/ResearchKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		918FDEAD271B3F8F0045A0EF /* XCRemoteSwiftPackageReference "ParseCareKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/netreconlab/ParseCareKit.git";
@@ -1321,6 +1371,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 78074C3F29CA48D5006D78A9 /* XCRemoteSwiftPackageReference "CareKitUtilities" */;
 			productName = CareKitUtilities;
+		};
+		78CE28D029E896D700489DB3 /* ResearchKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78CE28CF29E896D700489DB3 /* XCRemoteSwiftPackageReference "ResearchKit" */;
+			productName = ResearchKit;
 		};
 		918FDEAE271B3F8F0045A0EF /* ParseCareKit */ = {
 			isa = XCSwiftPackageProductDependency;
