@@ -71,7 +71,7 @@ extension OCKHealthKitPassthroughStore {
                    are trying to copy the method to this file, you are using the code incorrectly. Be
                    sure to understand the difference between a type method and instance method.
                    */
-           
+
            try await OCKStore.getCarePlanUUIDs() // This is a type method
         var steps = OCKHealthKitTask(
             id: TaskID.steps,
