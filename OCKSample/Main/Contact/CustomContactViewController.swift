@@ -66,6 +66,7 @@ class CustomContactViewController: OCKListViewController {
     @objc private func presentContactsListViewController() {
 
         let contactPicker = CNContactPickerViewController()
+        contactPicker.view.tintColor = self.view.tintColor
         contactPicker.delegate = self
         contactPicker.predicateForEnablingContact = NSPredicate(
           format: "phoneNumbers.@count > 0")
@@ -87,6 +88,15 @@ class CustomContactViewController: OCKListViewController {
             return
         }
 
+        /*
+                 TODOy: You should not show any contacts if your user has not completed the
+                 onboarding task yet. There was a method added recently in Utility.swift to
+                 assist with this. Use this method here and write a comment and state if
+                 it's an "instance method" or "type method". If you are trying to copy the
+                 method to this file, you are using the code incorrectly. Be
+                 sure to understand the difference between a type method and instance method.
+                 */
+
         var query = OCKContactQuery(for: Date())
         query.sortDescriptors.append(.familyName(ascending: true))
         query.sortDescriptors.append(.givenName(ascending: true))
@@ -99,18 +109,20 @@ class CustomContactViewController: OCKListViewController {
             return
         }
 
-        // TODOx: Modify this filter to not show the contact info for this user
-        let filterdContacts = convertedContacts.filter { convertedContact in
-            Logger.contact.info("Contact filtered: \(convertedContact.id)")
-            if convertedContact.id != personUUIDString {
-                return true
+        if await Utility.checkIfOnboardingIsComplete() { // type method
+            // TODOx: Modify this filter to not show the contact info for this user
+            let filterdContacts = convertedContacts.filter { convertedContact in
+                Logger.contact.info("Contact filtered: \(convertedContact.id)")
+                if convertedContact.id != personUUIDString {
+                    return true
+                }
+                return false
             }
-            return false
-        }
 
-        self.clearAndKeepSearchBar()
-        self.allContacts = filterdContacts
-        self.displayContacts(self.allContacts)
+            self.clearAndKeepSearchBar()
+            self.allContacts = filterdContacts
+            self.displayContacts(self.allContacts)
+        }
     }
 
     @MainActor
