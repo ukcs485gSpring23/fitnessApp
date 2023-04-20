@@ -33,10 +33,10 @@ extension Onboard {
             identifier: "\(identifier()).welcome"
         )
 
-        welcomeInstructionStep.title = "Welcome!"
-        welcomeInstructionStep.detailText = "Thank you for joining our study. Tap Next to learn more before signing up."
-        welcomeInstructionStep.image = UIImage(named: "welcome-image")
-        welcomeInstructionStep.imageContentMode = .scaleAspectFill
+        welcomeInstructionStep.title = "Hello!"
+        welcomeInstructionStep.detailText = "Welcome to CrFit! Before we can get started, please follow the next steps."
+        welcomeInstructionStep.image = UIImage(named: "crLogo.png")
+        welcomeInstructionStep.imageContentMode = .center
 
         // The Informed Consent Instruction step.
         let studyOverviewInstructionStep = ORKInstructionStep(
@@ -46,16 +46,24 @@ extension Onboard {
         studyOverviewInstructionStep.title = "Before You Join"
         studyOverviewInstructionStep.iconImage = UIImage(systemName: "checkmark.seal.fill")
 
+        let learnMoreInstructionStep = ORKLearnMoreInstructionStep(
+            identifier: "\(identifier()).learnMore"
+        )
+
+        learnMoreInstructionStep.text = "You can use your health data to track your personal goals using the app."
+        let learnMoreItemHealth = ORKLearnMoreItem()
+        learnMoreItemHealth.learnMoreInstructionStep = learnMoreInstructionStep
+
         let heartBodyItem = ORKBodyItem(
-            text: "The study will ask you to share some of your health data.",
+            text: "The app will ask you to share some of your health data.",
             detailText: nil,
             image: UIImage(systemName: "heart.fill"),
-            learnMoreItem: nil,
+            learnMoreItem: learnMoreItemHealth,
             bodyItemStyle: .image
         )
 
         let completeTasksBodyItem = ORKBodyItem(
-            text: "You will be asked to complete various tasks over the duration of the study.",
+            text: "You will be asked to complete various tasks when using this app.",
             detailText: nil,
             image: UIImage(systemName: "checkmark.circle.fill"),
             learnMoreItem: nil,
@@ -99,7 +107,8 @@ extension Onboard {
         let healthKitTypesToWrite: Set<HKSampleType> = [
             .quantityType(forIdentifier: .bodyMassIndex)!,
             .quantityType(forIdentifier: .activeEnergyBurned)!,
-            .workoutType()
+            .workoutType(),
+            .quantityType(forIdentifier: .stepCount)!
         ]
 
         let healthKitTypesToRead: Set<HKObjectType> = [

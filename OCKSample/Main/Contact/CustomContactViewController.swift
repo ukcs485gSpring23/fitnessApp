@@ -109,18 +109,20 @@ class CustomContactViewController: OCKListViewController {
             return
         }
 
-        // TODOx: Modify this filter to not show the contact info for this user
-        let filterdContacts = convertedContacts.filter { convertedContact in
-            Logger.contact.info("Contact filtered: \(convertedContact.id)")
-            if convertedContact.id != personUUIDString {
-                return true
+        if await Utility.checkIfOnboardingIsComplete() { // type method
+            // TODOx: Modify this filter to not show the contact info for this user
+            let filterdContacts = convertedContacts.filter { convertedContact in
+                Logger.contact.info("Contact filtered: \(convertedContact.id)")
+                if convertedContact.id != personUUIDString {
+                    return true
+                }
+                return false
             }
-            return false
-        }
 
-        self.clearAndKeepSearchBar()
-        self.allContacts = filterdContacts
-        self.displayContacts(self.allContacts)
+            self.clearAndKeepSearchBar()
+            self.allContacts = filterdContacts
+            self.displayContacts(self.allContacts)
+        }
     }
 
     @MainActor
