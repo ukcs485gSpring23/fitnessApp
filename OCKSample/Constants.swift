@@ -80,6 +80,7 @@ enum Constants {
     static let userTypeKey = "userType"
     static let card = "card"
     static let survey = "survey"
+    
 }
 
 enum MainViewPath {
@@ -98,6 +99,7 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case numericProgress = "Numeric Progress"
     case simple = "Simple"
     case survey = "Survey"
+    case custom = "Custom"
 }
 
 enum Schedules: String, CaseIterable, Identifiable {
@@ -113,9 +115,10 @@ enum TaskID {
     static let stretch = "stretch"
     static let kegels = "kegels"
     static let steps = "steps"
+    static let repetition = "repetition"
 
     static var ordered: [String] {
-        [Self.steps, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.steps, Self.repetition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
     }
 }
 
