@@ -36,7 +36,10 @@ struct CustomCardView: View {
                 HeaderView(title: Text(viewModel.taskEvents.firstEventTitle),
                            detail: Text(viewModel.taskEvents.firstEventDetail ?? ""))
                 Divider()
-                ZStack(alignment: .center) {
+
+                HStack(alignment: .center,
+                       spacing: style.dimension.directionalInsets2.trailing) {
+
                     Button(action: {
                         Task {
                             await viewModel.compareCalories()
@@ -62,10 +65,6 @@ struct CustomCardView: View {
                             }
                         }
                     }
-                }
-                HStack(alignment: .center,
-                       spacing: style.dimension.directionalInsets2.trailing) {
-
                     /*
                      // Example of custom content.
                      TODOq: Remove all that you are not using.
