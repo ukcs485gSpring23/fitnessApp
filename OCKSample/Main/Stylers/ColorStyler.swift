@@ -27,7 +27,7 @@ struct ColorStyler: OCKColorStyler {
     }
 
     var secondaryCustomGroupedBackground: UIColor {
-        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
 
     #endif

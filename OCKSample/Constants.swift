@@ -100,6 +100,7 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
     case survey = "Survey"
     case custom = "Custom"
+    case custom2 = "Custom2"
 }
 
 enum Schedules: String, CaseIterable, Identifiable {
@@ -116,9 +117,10 @@ enum TaskID {
     static let kegels = "kegels"
     static let steps = "steps"
     static let repetition = "repetition"
+    static let nutrition = "nutrition"
 
     static var ordered: [String] {
-        [Self.steps, Self.repetition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.steps, Self.repetition, Self.nutrition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
     }
 }
 

@@ -85,6 +85,8 @@
 		78608BF629EF36BF0071FAD0 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78608BF429EF36BF0071FAD0 /* CheckIn.swift */; };
 		78608BF829EF36FF0071FAD0 /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */; };
 		78608BF929EF36FF0071FAD0 /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */; };
+		788D86032A01C42400D2D07C /* CustomCardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D86022A01C42400D2D07C /* CustomCardView2.swift */; };
+		788D86052A01C46C00D2D07C /* CustomCardViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D86042A01C46C00D2D07C /* CustomCardViewModel2.swift */; };
 		789C8A2C29F8716F00CE8613 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2B29F8716F00CE8613 /* CardViewModel.swift */; };
 		789C8A2E29F871AD00CE8613 /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2D29F871AD00CE8613 /* CustomCardView.swift */; };
 		789C8A3029F8729300CE8613 /* CustomCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2F29F8729300CE8613 /* CustomCardViewModel.swift */; };
@@ -234,6 +236,8 @@
 		78608BF229EF351F0071FAD0 /* SurveryViewSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveryViewSynchronizer.swift; sourceTree = "<group>"; };
 		78608BF429EF36BF0071FAD0 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeOfMotion.swift; sourceTree = "<group>"; };
+		788D86022A01C42400D2D07C /* CustomCardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView2.swift; sourceTree = "<group>"; };
+		788D86042A01C46C00D2D07C /* CustomCardViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardViewModel2.swift; sourceTree = "<group>"; };
 		789C8A2B29F8716F00CE8613 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		789C8A2D29F871AD00CE8613 /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		789C8A2F29F8729300CE8613 /* CustomCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +342,8 @@
 				78608BF229EF351F0071FAD0 /* SurveryViewSynchronizer.swift */,
 				789C8A2B29F8716F00CE8613 /* CardViewModel.swift */,
 				789C8A2D29F871AD00CE8613 /* CustomCardView.swift */,
+				788D86022A01C42400D2D07C /* CustomCardView2.swift */,
+				788D86042A01C46C00D2D07C /* CustomCardViewModel2.swift */,
 			);
 			path = CustomCards;
 			sourceTree = "<group>";
@@ -943,6 +949,7 @@
 				78608BF029EF33B50071FAD0 /* OCKAnyEvent.swift in Sources */,
 				E7C37849228F887800E982D8 /* TipView.swift in Sources */,
 				78CE28E129E89B4700489DB3 /* Consent.swift in Sources */,
+				788D86032A01C42400D2D07C /* CustomCardView2.swift in Sources */,
 				7845A84A29DF67CA00690F3C /* MyContactView.swift in Sources */,
 				70077597252228E900EC0EDA /* User.swift in Sources */,
 				78074C4B29CA4E1A006D78A9 /* OCKSynchronizedStoreManager.swift in Sources */,
@@ -951,6 +958,7 @@
 				789C8A2E29F871AD00CE8613 /* CustomCardView.swift in Sources */,
 				7083A856279CA40A00B3832E /* PCKUtility.swift in Sources */,
 				789C8A3229F872C000CE8613 /* CustomFeaturedContentView.swift in Sources */,
+				788D86052A01C46C00D2D07C /* CustomCardViewModel2.swift in Sources */,
 				70F921AE27CABE7700368CEC /* RemoteSessionDelegate.swift in Sources */,
 				70F03A952786093B00E5AFB4 /* OCKHealthKitPassthroughStore.swift in Sources */,
 				7036E4BF256DA089006E9A3C /* LoginViewModel.swift in Sources */,

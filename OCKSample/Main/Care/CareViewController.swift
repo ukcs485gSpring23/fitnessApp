@@ -233,6 +233,13 @@ class CareViewController: OCKDailyPageViewController {
                     let customCard = CustomCardView(viewModel: viewModel)
                     return [customCard.formattedHostingController()]
 
+        case .custom2:
+                    let viewModel = CustomCardViewModel2(task: task,
+                                                        eventQuery: .init(for: date),
+                                                        storeManager: self.storeManager)
+                    let customCard2 = CustomCardView2(viewModel: viewModel)
+                    return [customCard2.formattedHostingController()]
+
         case .simple:
             /*
              Since the kegel task is only scheduled every other day, there will be cases

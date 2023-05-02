@@ -159,6 +159,15 @@ extension OCKStore {
                repetition.asset = "repeat.circle"
                repetition.card = .custom
 
+        var nutrition = OCKTask(id: TaskID.nutrition,
+                                        title: "Track your nutrition",
+                                        carePlanUUID: nil,
+                                        schedule: nauseaSchedule)
+               nutrition.impactsAdherence = false
+               nutrition.instructions = "Input how many reps you completed."
+               nutrition.asset = "repeat.circle"
+               nutrition.card = .custom2
+
         let kegelElement = OCKScheduleElement(start: beforeBreakfast,
                                               end: nil,
                                               interval: DateComponents(day: 2))
@@ -182,7 +191,7 @@ extension OCKStore {
         stretch.asset = "figure.walk"
         let carePlanUUIDs = try await Self.getCarePlanUUIDs()
       //  try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
-        try await addTasksIfNotPresent([repetition])
+        try await addTasksIfNotPresent([repetition, nutrition])
 
         try await addOnboardingTask(carePlanUUIDs[.health])
         try await addSurveyTasks(carePlanUUIDs[.checkIn])
