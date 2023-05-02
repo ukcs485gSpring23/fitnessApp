@@ -160,7 +160,7 @@ class CareViewController: OCKDailyPageViewController {
                     // Add a non-CareKit view into the list
                     let tipTitle = "Benefits of exercising"
                     // let tipText = "Learn how activity can promote a healthy pregnancy."
-                    // TODO: 5 - Need to use correct initializer instead of setting properties
+                    // TODOq: 5 - Need to use correct initializer instead of setting properties
                     let customFeaturedView = CustomFeaturedContentView()
                     // swiftlint:disable:next line_length
                     customFeaturedView.url = URL(string: "https://www.uky.edu/hr/work-life-and-well-being/physical-activity")
@@ -169,8 +169,8 @@ class CareViewController: OCKDailyPageViewController {
                     customFeaturedView.label.textColor = .white
                     customFeaturedView.customStyle = CustomStylerKey.defaultValue
                     listViewController.appendView(customFeaturedView, animated: false)
-                    //let tipText = "Learn how activity can promote a healthy pregnancy."
-             
+                    // let tipText = "Learn how activity can promote a healthy pregnancy."
+
                 }
             }
 
@@ -218,10 +218,10 @@ class CareViewController: OCKDailyPageViewController {
             return [OCKInstructionsTaskViewController(task: task,
                                                       eventQuery: .init(for: date),
                                                       storeManager: self.storeManager)]
-            
+
         case .custom:
                     /*
-                     TODO: Example of showing how to use your custom card. This
+                     TODOq: Example of showing how to use your custom card. This
                      should be placed correctly for the final to receive credit.
                      This card currently only shows when numericProgress is selected,
                      you should add the card to the switch statement properly to

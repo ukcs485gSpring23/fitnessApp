@@ -20,7 +20,7 @@ struct CustomCardView: View {
                    spacing: style.dimension.directionalInsets1.top) {
                 /*
                  // Example of custom content that looks something like Header.
-                 TODO: Remove this if you don't use it.
+                 TODOq: Remove this if you don't use it.
                  VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top / 4.0) {
                     Text(viewModel.taskEvents.firstEventTitle)
                         .font(.headline)
@@ -40,36 +40,64 @@ struct CustomCardView: View {
 
                     /*
                      // Example of custom content.
-                     TODO: Remove all that you are not using.
+                     TODOq: Remove all that you are not using.
                      */
                     Button(action: {
                         Task {
-                            await viewModel.action(viewModel.value)
+                            await viewModel.compareCalories()
                         }
+                        // swiftlint:disable:next multiple_closures_with_trailing_closure
                     }) {
-                        CircularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
-                            Image(systemName: "checkmark") // Can place any view type here
-                                .resizable()
-                                .padding()
-                                .frame(width: 50, height: 50) // Change size to make larger/smaller
+                        CircularCompletionView(isComplete: true) {
+                            if viewModel.currentButton == .goalMet {
+                                Image(systemName: "hand.thumbsup.fill") // Can place any view type here
+                                    .resizable()
+                                    .padding()
+                                    .frame(width: 50, height: 50) // Change size to make larger/smaller
+                            } else if viewModel.currentButton == .goalFailed {
+                                Image(systemName: "hand.thumbsdown.fill") // Can place any view type here
+                                    .resizable()
+                                    .padding()
+                                    .frame(width: 50, height: 50) // Change size to make larger/smaller
+                            } else {
+                                Image(systemName: "cursorarrow.click") // Can place any view type here
+                                    .resizable()
+                                    .padding()
+                                    .frame(width: 50, height: 50) // Change size to make larger/smaller
+                            }
                         }
                     }
                     Spacer()
 
-                    Text("Input: ")
+                    Text("Amount: ")
                         .font(Font.headline)
-                    TextField("0.0",
-                              value: $viewModel.valueAsDouble,
+                        .foregroundColor(Color(#colorLiteral(red: 0.7270685434, green: 0, blue: 0, alpha: 1)))
+                    TextField("0",
+                              value: $viewModel.userCaloriesAsInt,
                               formatter: viewModel.amountFormatter)
-                        .keyboardType(.decimalPad)
+                    .foregroundColor(Color(#colorLiteral(red: 0.7270685434, green: 0, blue: 0, alpha: 1)))
+                    .keyboardType(.numberPad)
                         .font(Font.title.weight(.bold))
                         .foregroundColor(.accentColor)
 
                     Spacer()
-                    Button(action: {
+
+                    Text("Goal: ")
+                        .font(Font.headline)
+                        .foregroundColor(Color(#colorLiteral(red: 0.7270685434, green: 0, blue: 0, alpha: 1)))
+                    TextField("0",
+                              value: $viewModel.goalCaloriesAsInt,
+                              formatter: viewModel.amountFormatter)
+                    .foregroundColor(Color(#colorLiteral(red: 0.7270685434, green: 0, blue: 0, alpha: 1)))
+                    .keyboardType(.numberPad)
+                        .font(Font.title.weight(.bold))
+                        .foregroundColor(.accentColor)
+
+                  /*  Button(action: {
                         Task {
                             await viewModel.action(viewModel.value)
                         }
+                        // swiftlin t:disable:next multiple_closures_with_trailing_closure
                     }) {
                         RectangularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
                             Image(systemName: "checkmark") // Can place any view type here
@@ -77,12 +105,12 @@ struct CustomCardView: View {
                                 .padding()
                                 .frame(width: 50, height: 50) // Change size to make larger/smaller
                         }
-                    }
+                    }*/
 
-                    (viewModel.valueText ?? Text("0.0"))
+               /*     (viewModel.valueText ?? Text("0.0"))
                         .multilineTextAlignment(.trailing)
                         .font(Font.title.weight(.bold))
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(.accentColor)*/
                 }
             }
             .padding()

@@ -149,7 +149,7 @@ extension OCKStore {
         nausea.instructions = "Tap the button below anytime you experience nausea."
         nausea.asset = "bed.double"
         nausea.card = .button
-        
+
         var repetition = OCKTask(id: TaskID.repetition,
                                         title: "Track your repetitions",
                                         carePlanUUID: nil,

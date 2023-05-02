@@ -67,7 +67,7 @@ class InsightsViewController: OCKListViewController {
     @MainActor
     func fetchTasks(on date: Date) async -> [OCKAnyTask] {
         /**
-         TODO: How would you modify this to fetch all of your tasks?
+         TODOq: How would you modify this to fetch all of your tasks?
          Hint - you should look at the same function in CareViewController. If you
          understand queries and filters, this will be straightforward.
          */
@@ -87,14 +87,14 @@ class InsightsViewController: OCKListViewController {
     }
 
     /*
-     TODO: Plot all of your tasks in this method. Note that you can combine multiple
+     TODOq: Plot all of your tasks in this method. Note that you can combine multiple
      tasks into one chart (like the Nausea/Doxlymine chart if they are related.
     */
 
     func taskViewController(for task: OCKAnyTask,
                             on date: Date) -> [UIViewController]? {
         /*
-         TODO: CareKit has 3 plotType's: .bar, .scatter, and .line.
+         TODOq: CareKit has 3 plotType's: .bar, .scatter, and .line.
          You should have a 3 types in your InsightView meaning you
          should have at least 3 charts. Remember that all of your
          tasks need to be graphed so you may have more. The solution

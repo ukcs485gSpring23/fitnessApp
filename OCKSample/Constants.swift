@@ -80,7 +80,7 @@ enum Constants {
     static let userTypeKey = "userType"
     static let card = "card"
     static let survey = "survey"
-    
+
 }
 
 enum MainViewPath {
@@ -137,6 +137,12 @@ enum UserType: String, Codable {
         return [UserType.patient.rawValue,
                 UserType.none.rawValue]
     }
+}
+
+enum ButtonOption: CaseIterable {
+    case isZero
+    case goalMet
+    case goalFailed
 }
 
 enum InstallationChannel: String {

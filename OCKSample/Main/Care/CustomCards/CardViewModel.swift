@@ -10,7 +10,6 @@ import Foundation
 import CareKit
 import CareKitStore
 import CareKitUtilities
-import Foundation
 import SwiftUI
 
 /**
