@@ -158,15 +158,19 @@ class CareViewController: OCKDailyPageViewController {
             if isCurrentDay {
                 if Calendar.current.isDate(date, inSameDayAs: Date()) {
                     // Add a non-CareKit view into the list
-                    let tipTitle = "Benefits of exercising"
+                    let tipTitle = "Daily Fitness Advice"
+                    let customFeaturedView = CustomFeaturedContentView(url: "https://www.health.com/",
+                                                                       // swiftlint:disable:next line_length
+                                                                       image: UIImage(named: "risen-wang-20jX9b35r_M-unsplash"),
+                                                                       label: tipTitle,
+                                                                       textColor: #colorLiteral(red: 0.7283259034, green: 0, blue: 0, alpha: 1))
                     // let tipText = "Learn how activity can promote a healthy pregnancy."
                     // TODOq: 5 - Need to use correct initializer instead of setting properties
-                    let customFeaturedView = CustomFeaturedContentView()
-                    // swiftlint:disable:next line_length
-                    customFeaturedView.url = URL(string: "https://www.uky.edu/hr/work-life-and-well-being/physical-activity")
+                   /* let customFeaturedView = CustomFeaturedContentView()
+                    // swiftlint:dis able:next line_length
                     customFeaturedView.imageView.image = UIImage(named: "exercise.jpg")
                     customFeaturedView.label.text = tipTitle
-                    customFeaturedView.label.textColor = .white
+                    customFeaturedView.label.textColor = .white*/
                     customFeaturedView.customStyle = CustomStylerKey.defaultValue
                     listViewController.appendView(customFeaturedView, animated: false)
                     // let tipText = "Learn how activity can promote a healthy pregnancy."

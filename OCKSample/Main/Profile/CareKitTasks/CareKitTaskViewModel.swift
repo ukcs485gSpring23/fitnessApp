@@ -69,8 +69,7 @@ class CareKitTaskViewModel: ObservableObject {
                                              targetValues: [OCKOutcomeValue(1000, units: "goals")],
                                              duration: .allDay)
             chosenSchedule = OCKSchedule(composing: [element])
-        default:
-            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+
         }
 
         let uniqueId = UUID().uuidString // Create a unique id for each task
@@ -116,8 +115,7 @@ class CareKitTaskViewModel: ObservableObject {
                                              targetValues: [OCKOutcomeValue(1000, units: "goals")],
                                              duration: .allDay)
             chosenSchedule = OCKSchedule(composing: [element])
-        default:
-            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+
         }
         let uniqueId = UUID().uuidString // Create a unique id for each task
         var healthKitTask = OCKHealthKitTask(id: uniqueId,

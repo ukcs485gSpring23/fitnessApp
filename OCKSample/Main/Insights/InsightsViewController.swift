@@ -198,9 +198,36 @@ class InsightsViewController: OCKListViewController {
                 configurations: [logDataSeries],
                 storeManager: self.storeManager)
 
-            insightsCard.chartView.headerView.titleLabel.text = "Energy Burned"
+            insightsCard.chartView.headerView.titleLabel.text = "Energy Burned, Large Calories"
             insightsCard.chartView.headerView.detailLabel.text = "This Week"
-            insightsCard.chartView.headerView.accessibilityLabel = "Calories, This Week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Large Calories, This Week"
+            cards.append(insightsCard)
+
+            return cards
+
+        case TaskID.flightsClimbed:
+            var cards = [UIViewController]()
+            // dynamic gradient colors
+            let firstGradient = TintColorFlipKey.defaultValue
+
+            // Create a plot comparing nausea to medication adherence.
+            let logDataSeries = OCKDataSeriesConfiguration(
+                taskID: TaskID.flightsClimbed,
+                legendTitle: "Flights Climbed",
+                gradientStartColor: firstGradient,
+                gradientEndColor: firstGradient,
+                markerSize: 10,
+                eventAggregator: OCKEventAggregator.countOutcomeValues)
+
+            let insightsCard = OCKCartesianChartViewController(
+                plotType: .line,
+                selectedDate: date,
+                configurations: [logDataSeries],
+                storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Flights Climbed"
+            insightsCard.chartView.headerView.detailLabel.text = "This Week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Flights climbed, This Week"
             cards.append(insightsCard)
 
             return cards

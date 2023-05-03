@@ -42,7 +42,7 @@ extension OCKHealthKitPassthroughStore {
         }
     }
 
-    func populateCarePlans(patientUUID: UUID? = nil) async throws -> OCKCarePlan {
+    func populateCarePlans(patientUUID: UUID? = nil) async throws {
             let healthCarePlan = OCKCarePlan(id: CarePlanID.health.rawValue,
                                               title: "Health Care Plan",
                                               patientUUID: patientUUID)
@@ -52,7 +52,6 @@ extension OCKHealthKitPassthroughStore {
                 .addCarePlansIfNotPresent([healthCarePlan],
                                           patientUUID: patientUUID)
 
-        return healthCarePlan
         }
 
     /*
@@ -60,7 +59,7 @@ extension OCKHealthKitPassthroughStore {
        */
        func populateSampleData(_ patientUUID: UUID? = nil) async throws {
 
-        let carePlan = try await populateCarePlans(patientUUID: patientUUID)
+        try await populateCarePlans(patientUUID: patientUUID)
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
             duration: .hours(12), targetValues: [OCKOutcomeValue(500.0, units: "Calories")])
