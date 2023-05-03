@@ -127,16 +127,16 @@ extension OCKStore {
 
         let daily = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
 
-        var logWorkout = OCKTask(id: TaskID.doxylamine,
-                                 title: "Log Set Time",
+        var logWorkout = OCKTask(id: TaskID.logWorkout,
+                                 title: "Log Your Meals",
                                  carePlanUUID: carePlanUUIDs[.checkIn],
                                  schedule: everyOtherDay)
-        logWorkout.instructions = "Time your sets"
+        logWorkout.instructions = "Press each time you eat a meal."
         logWorkout.impactsAdherence = false
         logWorkout.asset = "plus.circle.fill"
         logWorkout.card = .button
 
-        var run = OCKTask(id: TaskID.nausea,
+        var run = OCKTask(id: TaskID.run,
                              title: "Run Today",
                              carePlanUUID: carePlanUUIDs[.checkIn],
                              schedule: weekly)
@@ -146,7 +146,7 @@ extension OCKStore {
         run.asset = "figure.run"
         run.card = .instruction
 
-        var calorie = OCKTask(id: TaskID.repetition,
+        var calorie = OCKTask(id: TaskID.calorie,
                                         title: "Calories Consumed",
                                         carePlanUUID: carePlanUUIDs[.checkIn],
                                         schedule: daily)
@@ -156,7 +156,7 @@ extension OCKStore {
         calorie.asset = "repeat.circle"
         calorie.card = .custom
 
-        var qotd = OCKTask(id: TaskID.nutrition,
+        var qotd = OCKTask(id: TaskID.qotd,
                                         title: "Quote of the Day!",
                                         carePlanUUID: carePlanUUIDs[.checkIn],
                                         schedule: daily)
@@ -251,20 +251,11 @@ extension OCKStore {
         }
 
         func addSurveyTasks(_ carePlanUUID: UUID? = nil) async throws {
-            let checkInSchedule = OCKSchedule.dailyAtTime(
+            let workoutSchedule = OCKSchedule.dailyAtTime(
                 hour: 8, minutes: 0,
                 start: Date(), end: nil,
                 text: nil
             )
-
-            var checkInTask = OCKTask(
-                id: CheckIn.identifier(),
-                title: "Check In",
-                carePlanUUID: carePlanUUID,
-                schedule: checkInSchedule
-            )
-            checkInTask.card = .survey
-            checkInTask.survey = .checkIn
 
             let thisMorning = Calendar.current.startOfDay(for: Date())
 
@@ -298,19 +289,27 @@ extension OCKStore {
                 duration: .allDay
             )
 
-            let rangeOfMotionCheckSchedule = OCKSchedule(
+            let weightSchedule = OCKSchedule(
                 composing: [dailyElement, weeklyElement]
             )
 
-            var rangeOfMotionTask = OCKTask(
-                id: RangeOfMotion.identifier(),
-                title: "Range Of Motion",
+            var workoutTask = OCKTask(
+                id: Workout.identifier(),
+                title: "Workout Minutes",
                 carePlanUUID: carePlanUUID,
-                schedule: rangeOfMotionCheckSchedule
+                schedule: workoutSchedule
             )
-            rangeOfMotionTask.card = .survey
-            rangeOfMotionTask.survey = .rangeOfMotion
+            workoutTask.card = .survey
+            workoutTask.survey = .workout
 
-            try await addTasksIfNotPresent([checkInTask, rangeOfMotionTask])
+            var weightTask = OCKTask(
+                id: Weight.identifier(),
+                title: "Weight Goals",
+                carePlanUUID: carePlanUUID,
+                schedule: weightSchedule
+            )
+            weightTask.card = .survey
+            weightTask.survey = .weight
+            try await addTasksIfNotPresent([workoutTask, weightTask])
         }
 }

@@ -75,11 +75,13 @@ class InsightsViewController: OCKListViewController {
         query.excludesTasksWithNoEvents = true
         do {
             let tasks = try await storeManager.store.fetchAnyTasks(query: query)
-            var taskIDs = TaskID.ordered
+            return tasks.filter { $0.id != Onboard.identifier() }
+         /*   var taskIDs = TaskID.ordered
             taskIDs.append(CheckIn().identifier())
+            taskIDs.append(Workout().identifier())
             let orderedTasks = taskIDs.compactMap { orderedTaskID in
                 tasks.first(where: { $0.id == orderedTaskID }) }
-            return orderedTasks
+            return orderedTasks*/
         } catch {
             Logger.insights.error("\(error.localizedDescription, privacy: .public)")
             return []
@@ -111,7 +113,121 @@ class InsightsViewController: OCKListViewController {
         let survey = CheckIn() // Only used for example.
         let surveyTaskID = survey.identifier() // Only used for example.
 
+        let workout = Workout()
+        let workoutTaskID = workout.identifier()
+
+        let weight = Weight()
+        let weightTaskID = weight.identifier()
+
         switch task.id {
+        case workoutTaskID:
+            let firstBarGradient = TintColorFlipKey.defaultValue
+            let secondBarGradient = TintColorKey.defaultValue
+            let meanWorkoutMinutesDataSeries = OCKDataSeriesConfiguration(
+                taskID: workoutTaskID,
+                legendTitle: "Workout Minutes",
+                gradientStartColor: firstBarGradient,
+                gradientEndColor: firstBarGradient,
+                markerSize: 10,
+                eventAggregator: .aggregatorMean(Workout.workoutItemIdentifier))
+
+            let meanGoalMinutesDataSeries = OCKDataSeriesConfiguration(
+                taskID: workoutTaskID,
+                legendTitle: "Goal Minutes",
+                gradientStartColor: secondBarGradient,
+                gradientEndColor: secondBarGradient,
+                markerSize: 10,
+                eventAggregator: .aggregatorMean(Workout.goalItemIdentifier))
+
+            let insightsCard = OCKCartesianChartViewController(
+                plotType: .bar,
+                selectedDate: date,
+                configurations: [meanWorkoutMinutesDataSeries, meanGoalMinutesDataSeries],
+                storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Workout/Goal Minutes"
+            insightsCard.chartView.headerView.detailLabel.text = "This week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Minutes, This Week"
+
+            return [insightsCard]
+
+        case TaskID.logWorkout:
+            var cards = [UIViewController]()
+            // dynamic gradient colors
+            let firstGradient = TintColorFlipKey.defaultValue
+
+            // Create a plot comparing nausea to medication adherence.
+            let logDataSeries = OCKDataSeriesConfiguration(
+                taskID: TaskID.logWorkout,
+                legendTitle: "Log Meals",
+                gradientStartColor: firstGradient,
+                gradientEndColor: firstGradient,
+                markerSize: 10,
+                eventAggregator: OCKEventAggregator.countOutcomeValues)
+
+            let insightsCard = OCKCartesianChartViewController(
+                plotType: .scatter,
+                selectedDate: date,
+                configurations: [logDataSeries],
+                storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Meals Logged"
+            insightsCard.chartView.headerView.detailLabel.text = "This Week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Number meals, This Week"
+            cards.append(insightsCard)
+
+            return cards
+
+        case TaskID.activeEnergy:
+            var cards = [UIViewController]()
+            // dynamic gradient colors
+            let firstGradient = TintColorFlipKey.defaultValue
+
+            // Create a plot comparing nausea to medication adherence.
+            let logDataSeries = OCKDataSeriesConfiguration(
+                taskID: TaskID.activeEnergy,
+                legendTitle: "Energy Burned",
+                gradientStartColor: firstGradient,
+                gradientEndColor: firstGradient,
+                markerSize: 10,
+                eventAggregator: OCKEventAggregator.countOutcomeValues)
+
+            let insightsCard = OCKCartesianChartViewController(
+                plotType: .bar,
+                selectedDate: date,
+                configurations: [logDataSeries],
+                storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Energy Burned"
+            insightsCard.chartView.headerView.detailLabel.text = "This Week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Calories, This Week"
+            cards.append(insightsCard)
+
+            return cards
+
+        case weightTaskID:
+            let firstBarGradient = TintColorFlipKey.defaultValue
+
+            let meanWeightDataSeries = OCKDataSeriesConfiguration(
+                taskID: weightTaskID,
+                legendTitle: "Weight, kg",
+                gradientStartColor: firstBarGradient,
+                gradientEndColor: firstBarGradient,
+                markerSize: 10,
+                eventAggregator: .aggregatorMean(Weight.currentWeightItemIdentifier))
+
+            let insightsCard = OCKCartesianChartViewController(
+                plotType: .line,
+                selectedDate: date,
+                configurations: [meanWeightDataSeries],
+                storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Current Weight"
+            insightsCard.chartView.headerView.detailLabel.text = "This week"
+            insightsCard.chartView.headerView.accessibilityLabel = "kg, This Week"
+
+            return [insightsCard]
+
         case surveyTaskID:
 
             /*
@@ -154,7 +270,7 @@ class InsightsViewController: OCKListViewController {
 
             return [insightsCard]
 
-        case TaskID.nausea:
+       /* case TaskID.nausea:
             var cards = [UIViewController]()
             // dynamic gradient colors
             let nauseaGradientStart = TintColorFlipKey.defaultValue
@@ -188,7 +304,7 @@ class InsightsViewController: OCKListViewController {
             insightsCard.chartView.headerView.accessibilityLabel = "Nausea & Doxylamine Intake, This Week"
             cards.append(insightsCard)
 
-            return cards
+            return cards*/
 
         default:
             return nil

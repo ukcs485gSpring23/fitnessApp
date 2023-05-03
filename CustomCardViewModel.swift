@@ -11,10 +11,6 @@ import CareKitStore
 import Foundation
 
 class CustomCardViewModel: CardViewModel {
-    /*
-     TODOq: Place any additional properties needed for your custom Card.
-     Be sure to @Published them if they update your view
-     */
 
     @Published var currentButton: ButtonOption = .isZero
     @Published var value2: OCKOutcomeValue?
@@ -34,7 +30,6 @@ class CustomCardViewModel: CardViewModel {
             }
             return intValue
         }
-        // swiftl int:disable:next unused_setter_value
        set {
             value2 = OCKOutcomeValue(newValue)
         }
@@ -47,7 +42,6 @@ class CustomCardViewModel: CardViewModel {
             }
             return intValue
         }
-        // swiftl int:disable:next unused_setter_value
        set {
             value = OCKOutcomeValue(newValue)
         }

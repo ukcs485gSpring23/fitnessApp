@@ -111,20 +111,22 @@ enum Schedules: String, CaseIterable, Identifiable {
 }
 
 enum TaskID {
-    static let doxylamine = "doxylamine"
-    static let nausea = "nausea"
+    static let logWorkout = "Log Workout"
+    static let run = "run"
     static let stretch = "stretch"
     static let kegels = "kegels"
     static let steps = "steps"
     static let calorieCalculator = "Calorie Calculator"
     static let activeEnergy = "Active Energy"
     static let flightsClimbed = "Flights Climbed"
-    static let repetition = "repetition"
-    static let nutrition = "nutrition"
+    static let calorie = "calorie"
+    static let qotd = "qotd"
     static let strengthTraining = "Strength Training"
 
     static var ordered: [String] {
-        [Self.steps, Self.repetition, Self.nutrition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.qotd, Self.calorieCalculator, Self.calorie,
+         Self.activeEnergy, Self.strengthTraining, Self.logWorkout,
+         Self.run, Self.flightsClimbed]
     }
 }
 

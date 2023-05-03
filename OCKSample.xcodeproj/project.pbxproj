@@ -87,6 +87,10 @@
 		78608BF929EF36FF0071FAD0 /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */; };
 		788D86032A01C42400D2D07C /* CustomCardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D86022A01C42400D2D07C /* CustomCardView2.swift */; };
 		788D86052A01C46C00D2D07C /* CustomCardViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D86042A01C46C00D2D07C /* CustomCardViewModel2.swift */; };
+		78995CD02A02E3AF00CC8167 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78995CCF2A02E3AF00CC8167 /* Workout.swift */; };
+		78995CD12A02E3AF00CC8167 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78995CCF2A02E3AF00CC8167 /* Workout.swift */; };
+		78995CD32A02EB1500CC8167 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78995CD22A02EB1500CC8167 /* Weight.swift */; };
+		78995CD42A02EB1500CC8167 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78995CD22A02EB1500CC8167 /* Weight.swift */; };
 		789C8A2C29F8716F00CE8613 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2B29F8716F00CE8613 /* CardViewModel.swift */; };
 		789C8A2E29F871AD00CE8613 /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2D29F871AD00CE8613 /* CustomCardView.swift */; };
 		789C8A3029F8729300CE8613 /* CustomCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C8A2F29F8729300CE8613 /* CustomCardViewModel.swift */; };
@@ -238,6 +242,8 @@
 		78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeOfMotion.swift; sourceTree = "<group>"; };
 		788D86022A01C42400D2D07C /* CustomCardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView2.swift; sourceTree = "<group>"; };
 		788D86042A01C46C00D2D07C /* CustomCardViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardViewModel2.swift; sourceTree = "<group>"; };
+		78995CCF2A02E3AF00CC8167 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		78995CD22A02EB1500CC8167 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		789C8A2B29F8716F00CE8613 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		789C8A2D29F871AD00CE8613 /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		789C8A2F29F8729300CE8613 /* CustomCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardViewModel.swift; sourceTree = "<group>"; };
@@ -513,11 +519,12 @@
 		78CE28D229E897D600489DB3 /* Surveys */ = {
 			isa = PBXGroup;
 			children = (
-				78CE28D329E897FE00489DB3 /* Surveyable.swift */,
 				78CE28D629E8989F00489DB3 /* Survey.swift */,
 				78CE28D929E898E500489DB3 /* Onboard.swift */,
 				78608BF429EF36BF0071FAD0 /* CheckIn.swift */,
 				78608BF729EF36FF0071FAD0 /* RangeOfMotion.swift */,
+				78995CCF2A02E3AF00CC8167 /* Workout.swift */,
+				78995CD22A02EB1500CC8167 /* Weight.swift */,
 			);
 			path = Surveys;
 			sourceTree = "<group>";
@@ -566,6 +573,7 @@
 				78074C4A29CA4E1A006D78A9 /* OCKSynchronizedStoreManager.swift */,
 				78B1572429CBAA5E0058A61C /* OCKHealthKitTask+Custom.swift */,
 				78608BEF29EF33B50071FAD0 /* OCKAnyEvent.swift */,
+				78CE28D329E897FE00489DB3 /* Surveyable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -884,10 +892,12 @@
 				78074C4429CA49B4006D78A9 /* OCKTask.swift in Sources */,
 				70F03A9D27860A5600E5AFB4 /* OCKSynchronizedStoreManager+Publishers.swift in Sources */,
 				789FEDF429B91DD500119B8D /* DimensionStyle.swift in Sources */,
+				78995CD42A02EB1500CC8167 /* Weight.swift in Sources */,
 				91AD923F24A4C42D00925D4D /* NotificationController.swift in Sources */,
 				70CF66E528E1E74C00FAE977 /* TintColorFlipKey.swift in Sources */,
 				70F03A9C27860A2000E5AFB4 /* OCKStore.swift in Sources */,
 				70C0D474279BA492003DA141 /* Utility.swift in Sources */,
+				78995CD12A02E3AF00CC8167 /* Workout.swift in Sources */,
 				91AD923D24A4C42D00925D4D /* AppDelegate.swift in Sources */,
 				91AD924124A4C42D00925D4D /* NotificationView.swift in Sources */,
 				70308886258273D400FFABB6 /* LoginViewModel.swift in Sources */,
@@ -907,6 +917,7 @@
 				78074C4729CA4D4C006D78A9 /* CareKitTaskView.swift in Sources */,
 				78608BF529EF36BF0071FAD0 /* CheckIn.swift in Sources */,
 				918FDEB5271B40590045A0EF /* Installation.swift in Sources */,
+				78995CD32A02EB1500CC8167 /* Weight.swift in Sources */,
 				78DF948929B14F3100095546 /* AppearanceStyle.swift in Sources */,
 				78608BF329EF351F0071FAD0 /* SurveryViewSynchronizer.swift in Sources */,
 				70F921AC27CABE3000368CEC /* SessionDelegate.swift in Sources */,
@@ -916,6 +927,7 @@
 				7845A84C29DF680100690F3C /* MyContactViewController.swift in Sources */,
 				70F03A972786098F00E5AFB4 /* OCKStore.swift in Sources */,
 				70DFD80B2567074500B9DB12 /* LoginView.swift in Sources */,
+				78995CD02A02E3AF00CC8167 /* Workout.swift in Sources */,
 				789C8A3029F8729300CE8613 /* CustomCardViewModel.swift in Sources */,
 				70F03AA827860E7700E5AFB4 /* FontColorKey.swift in Sources */,
 				78074C4329CA49B4006D78A9 /* OCKTask.swift in Sources */,
