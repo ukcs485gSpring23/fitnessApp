@@ -40,49 +40,31 @@ struct CustomCardView2: View {
                     /*
                      // Example of custom content.
                      */
-                    Button(action: {
-                        Task {
-                            await viewModel.action(viewModel.value)
-                        }
-                        // swiftlint:disable:next multiple_closures_with_trailing_closure
-                    }) {
-                        CircularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
-                            Image(systemName: "checkmark") // Can place any view type here
-                                .resizable()
-                                .padding()
-                                .frame(width: 50, height: 50) // Change size to make larger/smaller
-                        }
-                    }
+
                     Spacer()
 
-                    Text("Input: ")
-                        .font(Font.headline)
-                    TextField("0.0",
-                              value: $viewModel.valueAsDouble,
-                              formatter: viewModel.amountFormatter)
-                        .keyboardType(.decimalPad)
-                        .font(Font.title.weight(.bold))
+                    TextField("QOTD", text: $viewModel.valueAsString)
+                        .keyboardType(.default)
+                        .font(Font.title.weight(.thin))
+                        .fontWidth(.compressed)
+
                         .foregroundColor(.accentColor)
 
                     Spacer()
-                    Button(action: {
-                        Task {
-                            await viewModel.action(viewModel.value)
-                        }
-                        // swiftlint:disable:next multiple_closures_with_trailing_closure
-                    }) {
-                        RectangularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
-                            Image(systemName: "checkmark") // Can place any view type here
-                                .resizable()
-                                .padding()
-                                .frame(width: 50, height: 50) // Change size to make larger/smaller
-                        }
-                    }
 
-                    (viewModel.valueText ?? Text("0.0"))
-                        .multilineTextAlignment(.trailing)
-                        .font(Font.title.weight(.bold))
-                        .foregroundColor(.accentColor)
+                }
+                Button(action: {
+                    Task {
+                        await viewModel.action(viewModel.value)
+                    }
+                    // swiftlint:disable:next multiple_closures_with_trailing_closure
+                }) {
+                    CircularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
+                        Image(systemName: "projective") // Can place any view type here
+                            .resizable()
+                            .padding()
+                            .frame(width: 50, height: 50) // Change size to make larger/smaller
+                    }
                 }
             }
             .padding()

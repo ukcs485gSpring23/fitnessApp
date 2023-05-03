@@ -83,6 +83,16 @@ extension OCKHealthKitPassthroughStore {
                 quantityType: .cumulative,
                 unit: .count()))
         steps.asset = "figure.walk"
-        try await addTasksIfNotPresent([steps])
+
+        var activeEnergy = OCKHealthKitTask(
+                                            id: TaskID.steps,
+                                            title: "Active Energy Burned",
+                                            carePlanUUID: carePlan.uuid,
+                                            schedule: schedule,
+                                            healthKitLinkage: .init(quantityIdentifier: .activeEnergyBurned,
+                                                                    quantityType: .discrete,
+                                                                    unit: .largeCalorie()))
+           activeEnergy.card = .numericProgress
+        try await addTasksIfNotPresent([activeEnergy])
     }
 }

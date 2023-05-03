@@ -72,7 +72,7 @@ struct CustomCardView: View {
 
                     Spacer()
 
-                    Text("Amount: ")
+                    Text("Cal: ")
                         .font(Font.headline)
                         .foregroundColor(Color(#colorLiteral(red: 0.7270685434, green: 0, blue: 0, alpha: 1)))
                     TextField("0",

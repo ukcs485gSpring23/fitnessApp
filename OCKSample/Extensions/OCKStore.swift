@@ -126,47 +126,48 @@ extension OCKStore {
                                interval: DateComponents(day: 2))
         ])
 
-        var doxylamine = OCKTask(id: TaskID.doxylamine,
-                                 title: "Take Doxylamine",
-                                 carePlanUUID: nil,
+        var logWorkout = OCKTask(id: TaskID.doxylamine,
+                                 title: "Log Set Time",
+                                 carePlanUUID: checkInCarePlan.uuid,
                                  schedule: schedule)
-        doxylamine.instructions = "Take 25mg of doxylamine when you experience nausea."
-        doxylamine.asset = "pills.fill"
+        logWorkout.instructions = "Time your sets"
+        // doxylamine.asset = "pills.fill"
+        logWorkout.card = .button
 
         let nauseaSchedule = OCKSchedule(composing: [
             OCKScheduleElement(start: beforeBreakfast,
                                end: nil,
                                interval: DateComponents(day: 1),
-                               text: "Anytime throughout the day",
+                               text: nil,
                                targetValues: [], duration: .allDay)
             ])
 
-        var nausea = OCKTask(id: TaskID.nausea,
-                             title: "Track your nausea",
+        var run = OCKTask(id: TaskID.nausea,
+                             title: "Run Today",
                              carePlanUUID: checkInCarePlan.uuid,
-                             schedule: nauseaSchedule)
-        nausea.impactsAdherence = false
-        nausea.instructions = "Tap the button below anytime you experience nausea."
-        nausea.asset = "bed.double"
-        nausea.card = .button
+                             schedule: schedule)
+        run.impactsAdherence = false
+        run.instructions = "Go for a run today."
+        run.asset = "bed.double"
+        run.card = .instruction
 
-        var repetition = OCKTask(id: TaskID.repetition,
-                                        title: "Track your repetitions",
+        var calorie = OCKTask(id: TaskID.repetition,
+                                        title: "Calories Consumed",
                                         carePlanUUID: nil,
                                         schedule: nauseaSchedule)
-               repetition.impactsAdherence = false
-               repetition.instructions = "Input how many reps you completed."
-               repetition.asset = "repeat.circle"
-               repetition.card = .custom
+               calorie.impactsAdherence = false
+        calorie.instructions = "Compare your calories consumed with your goal."
+               calorie.asset = "repeat.circle"
+               calorie.card = .custom
 
-        var nutrition = OCKTask(id: TaskID.nutrition,
-                                        title: "Track your nutrition",
+        var qotd = OCKTask(id: TaskID.nutrition,
+                                        title: "Quote of the Day!",
                                         carePlanUUID: nil,
                                         schedule: nauseaSchedule)
-               nutrition.impactsAdherence = false
-               nutrition.instructions = "Input how many reps you completed."
-               nutrition.asset = "repeat.circle"
-               nutrition.card = .custom2
+               qotd.impactsAdherence = false
+               qotd.instructions = nil
+               qotd.asset = "repeat.circle"
+               qotd.card = .custom2
 
         let kegelElement = OCKScheduleElement(start: beforeBreakfast,
                                               end: nil,
@@ -191,7 +192,7 @@ extension OCKStore {
         stretch.asset = "figure.walk"
         let carePlanUUIDs = try await Self.getCarePlanUUIDs()
       //  try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
-        try await addTasksIfNotPresent([repetition, nutrition])
+        try await addTasksIfNotPresent([calorie, qotd, run, logWorkout])
 
         try await addOnboardingTask(carePlanUUIDs[.health])
         try await addSurveyTasks(carePlanUUIDs[.checkIn])

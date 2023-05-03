@@ -33,4 +33,16 @@ class CustomCardViewModel2: CardViewModel {
             value = OCKOutcomeValue(newValue)
         }
     }
+
+    var valueAsString: String {
+        get {
+            guard let stringValue = value?.stringValue else {
+                return ""
+            }
+            return stringValue
+        }
+        set {
+            value = OCKOutcomeValue(newValue)
+        }
+    }
 }
