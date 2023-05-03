@@ -78,25 +78,6 @@ struct CustomCardView: View {
                     .keyboardType(.numberPad)
                         .font(Font.title.weight(.bold))
                         .foregroundColor(.accentColor)
-
-                  /*  Button(action: {
-                        Task {
-                            await viewModel.action(viewModel.value)
-                        }
-                        // swiftlin t:disable:next multiple_closures_with_trailing_closure
-                    }) {
-                        RectangularCompletionView(isComplete: viewModel.taskEvents.isFirstEventComplete) {
-                            Image(systemName: "checkmark") // Can place any view type here
-                                .resizable()
-                                .padding()
-                                .frame(width: 50, height: 50) // Change size to make larger/smaller
-                        }
-                    }*/
-
-               /*     (viewModel.valueText ?? Text("0.0"))
-                        .multilineTextAlignment(.trailing)
-                        .font(Font.title.weight(.bold))
-                        .foregroundColor(.accentColor)*/
                 }
             }
             .padding()

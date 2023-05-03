@@ -164,16 +164,11 @@ struct LoginView: View {
             }
             Spacer()
         }
-        /*   .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
-                                                               Color(tintColor)]),
-                                   startPoint: .center,
-                                   endPoint: .top))*/
 
         .background(RadialGradient(gradient:
                                     Gradient(colors: [Color(.lightGray),
                                                       Color(.darkGray)]),
                                    center: .center, startRadius: 150, endRadius: 300 ))
-    //    .background(Color(TintColorKey.defaultValue))
     }
 }
 

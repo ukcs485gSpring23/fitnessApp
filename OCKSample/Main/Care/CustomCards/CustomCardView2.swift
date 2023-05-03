@@ -18,18 +18,7 @@ struct CustomCardView2: View {
         CardView {
             VStack(alignment: .leading,
                    spacing: style.dimension.directionalInsets1.top) {
-                /*
-                 // Example of custom content that looks something like Header.
-                 VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top / 4.0) {
-                    Text(viewModel.taskEvents.firstEventTitle)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                    Text(viewModel.taskEvents.firstEventDetail ?? "")
-                        .font(.caption)
-                        .fontWeight(.medium)
-                }
-                .foregroundColor(Color.primary)
-                */
+            
                 // Can look through HeaderView for creating custom
                 HeaderView(title: Text(viewModel.taskEvents.firstEventTitle),
                            detail: Text(viewModel.taskEvents.firstEventDetail ?? ""))

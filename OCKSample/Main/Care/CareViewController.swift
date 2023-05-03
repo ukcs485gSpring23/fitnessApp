@@ -164,16 +164,8 @@ class CareViewController: OCKDailyPageViewController {
                                                                        image: UIImage(named: "risen-wang-20jX9b35r_M-unsplash"),
                                                                        label: tipTitle,
                                                                        textColor: #colorLiteral(red: 0.7283259034, green: 0, blue: 0, alpha: 1))
-                    // let tipText = "Learn how activity can promote a healthy pregnancy."
-                    // TODOq: 5 - Need to use correct initializer instead of setting properties
-                   /* let customFeaturedView = CustomFeaturedContentView()
-                    // swiftlint:dis able:next line_length
-                    customFeaturedView.imageView.image = UIImage(named: "exercise.jpg")
-                    customFeaturedView.label.text = tipTitle
-                    customFeaturedView.label.textColor = .white*/
                     customFeaturedView.customStyle = CustomStylerKey.defaultValue
                     listViewController.appendView(customFeaturedView, animated: false)
-                    // let tipText = "Learn how activity can promote a healthy pregnancy."
 
                 }
             }
