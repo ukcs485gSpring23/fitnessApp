@@ -107,6 +107,7 @@ extension Onboard {
         let healthKitTypesToWrite: Set<HKSampleType> = [
             .quantityType(forIdentifier: .bodyMassIndex)!,
             .quantityType(forIdentifier: .activeEnergyBurned)!,
+            .quantityType(forIdentifier: .flightsClimbed)!,
             .workoutType(),
             .quantityType(forIdentifier: .stepCount)!
         ]
@@ -115,6 +116,8 @@ extension Onboard {
             .characteristicType(forIdentifier: .dateOfBirth)!,
             .workoutType(),
             .quantityType(forIdentifier: .appleStandTime)!,
+            .quantityType(forIdentifier: .activeEnergyBurned)!,
+            .quantityType(forIdentifier: .flightsClimbed)!,
             .quantityType(forIdentifier: .appleExerciseTime)!
         ]
 

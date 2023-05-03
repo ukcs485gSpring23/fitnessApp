@@ -57,7 +57,7 @@ struct LoginView: View {
                 Text("Sign Up").tag(1)
             }
             .pickerStyle(.segmented)
-            .background(Color(FontColorKey.defaultValue))
+            .background(Color(TintColorKey.defaultValue))
             .cornerRadius(20.0)
             .padding()
 

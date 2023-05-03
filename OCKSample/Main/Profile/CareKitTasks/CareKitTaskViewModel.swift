@@ -38,7 +38,7 @@ class CareKitTaskViewModel: ObservableObject {
         var query = OCKCarePlanQuery(for: Date())
         query.patientIDs = [personUUIDString]
         query.ids = [CarePlanID.checkIn.rawValue]
-        var foundCarePlan = try? await storeManager.store.fetchAnyCarePlans(query: query)
+        let foundCarePlan = try? await storeManager.store.fetchAnyCarePlans(query: query)
         return foundCarePlan?[0].remoteID
     }
 
@@ -74,13 +74,6 @@ class CareKitTaskViewModel: ObservableObject {
         }
 
         let uniqueId = UUID().uuidString // Create a unique id for each task
-
-        /*Update to work
-        var CPID: String? = nil
-        let tempCPID = await getCarePlanID()
-        if let unwrap = tempCPID {
-            CPID = unwrap
-        }*/
 
         var task = OCKTask(id: uniqueId,
                            title: title,

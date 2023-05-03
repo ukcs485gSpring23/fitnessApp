@@ -116,8 +116,12 @@ enum TaskID {
     static let stretch = "stretch"
     static let kegels = "kegels"
     static let steps = "steps"
+    static let calorieCalculator = "Calorie Calculator"
+    static let activeEnergy = "Active Energy"
+    static let flightsClimbed = "Flights Climbed"
     static let repetition = "repetition"
     static let nutrition = "nutrition"
+    static let strengthTraining = "Strength Training"
 
     static var ordered: [String] {
         [Self.steps, Self.repetition, Self.nutrition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
