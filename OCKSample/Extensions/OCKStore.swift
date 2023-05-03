@@ -44,7 +44,7 @@ extension OCKStore {
     }
 
     func populateCarePlans(patientUUID: UUID? = nil) async throws {
-            let checkInCarePlan = OCKCarePlan(id: CarePlanID.checkIn.rawValue,
+            let checkInCarePlan = OCKCarePlan(id: CarePlanID.input.rawValue,
                                               title: "Check in Care Plan",
                                               patientUUID: patientUUID)
             try await AppDelegateKey
@@ -63,8 +63,8 @@ extension OCKStore {
             }
 
             var query = OCKCarePlanQuery(for: Date())
-            query.ids = [CarePlanID.health.rawValue,
-                         CarePlanID.checkIn.rawValue]
+            query.ids = [CarePlanID.stat.rawValue,
+                         CarePlanID.input.rawValue]
 
             let foundCarePlans = try await store.fetchCarePlans(query: query)
             // Populate the dictionary for all CarePlan's
@@ -129,7 +129,7 @@ extension OCKStore {
 
         var logWorkout = OCKTask(id: TaskID.logWorkout,
                                  title: "Log Your Meals",
-                                 carePlanUUID: carePlanUUIDs[.checkIn],
+                                 carePlanUUID: carePlanUUIDs[.input],
                                  schedule: everyOtherDay)
         logWorkout.instructions = "Press each time you eat a meal."
         logWorkout.impactsAdherence = false
@@ -138,7 +138,7 @@ extension OCKStore {
 
         var run = OCKTask(id: TaskID.run,
                              title: "Run Today",
-                             carePlanUUID: carePlanUUIDs[.checkIn],
+                             carePlanUUID: carePlanUUIDs[.input],
                              schedule: weekly)
 
         run.impactsAdherence = true
@@ -148,7 +148,7 @@ extension OCKStore {
 
         var calorie = OCKTask(id: TaskID.calorie,
                                         title: "Calories Consumed",
-                                        carePlanUUID: carePlanUUIDs[.checkIn],
+                                        carePlanUUID: carePlanUUIDs[.input],
                                         schedule: daily)
 
         calorie.impactsAdherence = false
@@ -158,7 +158,7 @@ extension OCKStore {
 
         var qotd = OCKTask(id: TaskID.qotd,
                                         title: "Quote of the Day!",
-                                        carePlanUUID: carePlanUUIDs[.checkIn],
+                                        carePlanUUID: carePlanUUIDs[.input],
                                         schedule: daily)
                qotd.impactsAdherence = false
                qotd.instructions = "Put your motivational QOTD here!"
@@ -167,7 +167,7 @@ extension OCKStore {
 
         var link = OCKTask(id: TaskID.calorieCalculator,
                            title: "Calorie Calculator",
-                           carePlanUUID: carePlanUUIDs[.checkIn],
+                           carePlanUUID: carePlanUUIDs[.input],
                            schedule: daily)
 
         link.impactsAdherence = false
@@ -176,7 +176,7 @@ extension OCKStore {
 
         var strengthTraining = OCKTask(id: TaskID.strengthTraining,
                                        title: "Strength Training",
-                                       carePlanUUID: carePlanUUIDs[.checkIn],
+                                       carePlanUUID: carePlanUUIDs[.input],
                                        schedule: everyOtherDay)
 
         strengthTraining.card = .simple
@@ -186,13 +186,13 @@ extension OCKStore {
 
         try await addTasksIfNotPresent([calorie, qotd, run, logWorkout, link, strengthTraining])
 
-        try await addOnboardingTask(carePlanUUIDs[.health])
-        try await addSurveyTasks(carePlanUUIDs[.checkIn])
+        try await addOnboardingTask(carePlanUUIDs[.stat])
+        try await addSurveyTasks(carePlanUUIDs[.input])
 
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",
                                   familyName: "Daniels",
-                                  carePlanUUID: carePlanUUIDs[.checkIn])
+                                  carePlanUUID: carePlanUUIDs[.input])
         contact1.asset = "JaneDaniels"
         contact1.title = "Family Practice Doctor"
         contact1.role = "Dr. Daniels is a family practice doctor with 8 years of experience."
@@ -210,7 +210,7 @@ extension OCKStore {
         }()
 
         var contact2 = OCKContact(id: "matthew", givenName: "Matthew",
-                                  familyName: "Reiff", carePlanUUID: carePlanUUIDs[.checkIn])
+                                  familyName: "Reiff", carePlanUUID: carePlanUUIDs[.input])
         contact2.asset = "MatthewReiff"
         contact2.title = "OBGYN"
         contact2.role = "Dr. Reiff is an OBGYN with 13 years of experience."

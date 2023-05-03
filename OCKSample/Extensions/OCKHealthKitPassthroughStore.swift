@@ -43,7 +43,7 @@ extension OCKHealthKitPassthroughStore {
     }
 
     func populateCarePlans(patientUUID: UUID? = nil) async throws {
-            let healthCarePlan = OCKCarePlan(id: CarePlanID.health.rawValue,
+            let healthCarePlan = OCKCarePlan(id: CarePlanID.stat.rawValue,
                                               title: "Health Care Plan",
                                               patientUUID: patientUUID)
             try await AppDelegateKey
@@ -76,7 +76,7 @@ extension OCKHealthKitPassthroughStore {
         var activeEnergy = OCKHealthKitTask(
                                             id: TaskID.activeEnergy,
                                             title: "Active Energy Burned",
-                                            carePlanUUID: carePlanUUIDs[.health],
+                                            carePlanUUID: carePlanUUIDs[.stat],
                                             schedule: schedule,
                                             healthKitLinkage: OCKHealthKitLinkage(
                                                                     quantityIdentifier: .activeEnergyBurned,
@@ -89,7 +89,7 @@ extension OCKHealthKitPassthroughStore {
            var flightsClimbed = OCKHealthKitTask(
                                                id: TaskID.flightsClimbed,
                                                title: "Flights Climbed",
-                                               carePlanUUID: carePlanUUIDs[.health],
+                                               carePlanUUID: carePlanUUIDs[.stat],
                                                schedule: schedule,
                                                healthKitLinkage: OCKHealthKitLinkage(
                                                 quantityIdentifier: .flightsClimbed,

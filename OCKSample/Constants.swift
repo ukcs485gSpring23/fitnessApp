@@ -95,12 +95,12 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case grid = "Grid"
     case instruction = "Instruction"
     case labeledValue = "Labeled Value"
-    case link = "Link"
-    case numericProgress = "Numeric Progress"
+    case link = "Calorie Calculator"
+    case numericProgress = "Active Energy Burned"
     case simple = "Simple"
     case survey = "Survey"
-    case custom = "Custom"
-    case custom2 = "Custom2"
+    case custom = "Calories Consumed"
+    case custom2 = "QOTD"
 }
 
 enum Schedules: String, CaseIterable, Identifiable {
@@ -132,8 +132,8 @@ enum TaskID {
 
 enum CarePlanID: String, CaseIterable, Identifiable {
     var id: Self { self }
-    case health // Add custom id's for your Care Plans, these are examples
-    case checkIn
+    case stat
+    case input
 }
 
 enum UserType: String, Codable {

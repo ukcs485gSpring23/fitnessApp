@@ -30,18 +30,6 @@ class CareKitTaskViewModel: ObservableObject {
         self.storeManager = storeManager ?? StoreManagerKey.defaultValue
     }
 
-    func getCarePlanID() async -> String? {
-        guard (try? await User.current()) != nil,
-              let personUUIDString = try? await Utility.getRemoteClockUUID().uuidString else {
-            return nil
-        }
-        var query = OCKCarePlanQuery(for: Date())
-        query.patientIDs = [personUUIDString]
-        query.ids = [CarePlanID.checkIn.rawValue]
-        let foundCarePlan = try? await storeManager.store.fetchAnyCarePlans(query: query)
-        return foundCarePlan?[0].remoteID
-    }
-
     // MARK: Intents
     func addTask() async {
         guard let appDelegate = AppDelegateKey.defaultValue else {
