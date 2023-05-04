@@ -6,6 +6,7 @@
 //  Copyright © 2023 Network Reconnaissance Lab. All rights reserved.
 //
 
+import Foundation
 import CareKit
 import CareKitStore
 import CareKitUI
@@ -39,6 +40,31 @@ final class SurveyViewSynchronizer: OCKSurveyTaskViewSynchronizer {
                         Pain: \(Int(pain))
                         Sleep: \(Int(sleep)) hours
                         """
+                }
+                if task.survey == .workout {
+                    let workoutMinutes = event.answer(kind: Workout.workoutItemIdentifier)
+                    let goalMinutes = event.answer(kind: Workout.goalItemIdentifier)
+                    view.instructionsLabel.text = """
+                        Workout Minutes: \(Int(workoutMinutes))
+                        Goal Minutes: \(Int(goalMinutes))
+                        """
+                }
+
+                if task.survey == .weight {
+                    let currentWeight = event.answer(kind: Weight.currentWeightItemIdentifier) * 2.20462
+                    let goalWeight = event.answer(kind: Weight.goalWeightItemIdentifier) * 2.20462
+                    let goalTime = event.answer(kind: Weight.goalTimeItemIdentifier)
+                    let weightDifference = abs(goalWeight-currentWeight)
+                    let perWeek: Double = weightDifference / goalTime
+                    let perWeekString = String(format: "%.2f", perWeek)
+
+                    view.instructionsLabel.text = """
+                        Current Weight: \(Int(currentWeight)) lbs
+                        Goal Weight: \(Int(goalWeight)) lbs
+                        Goal Time: \(Int(goalTime)) weeks
+                        This will take about \(perWeekString) lbs/week.
+                        """
+
                 }
             }
 

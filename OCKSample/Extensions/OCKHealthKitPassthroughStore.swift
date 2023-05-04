@@ -42,8 +42,8 @@ extension OCKHealthKitPassthroughStore {
         }
     }
 
-    func populateCarePlans(patientUUID: UUID? = nil) async throws -> OCKCarePlan {
-            let healthCarePlan = OCKCarePlan(id: CarePlanID.health.rawValue,
+    func populateCarePlans(patientUUID: UUID? = nil) async throws {
+            let healthCarePlan = OCKCarePlan(id: CarePlanID.stat.rawValue,
                                               title: "Health Care Plan",
                                               patientUUID: patientUUID)
             try await AppDelegateKey
@@ -52,7 +52,6 @@ extension OCKHealthKitPassthroughStore {
                 .addCarePlansIfNotPresent([healthCarePlan],
                                           patientUUID: patientUUID)
 
-        return healthCarePlan
         }
 
     /*
@@ -60,29 +59,45 @@ extension OCKHealthKitPassthroughStore {
        */
        func populateSampleData(_ patientUUID: UUID? = nil) async throws {
 
-        let carePlan = try await populateCarePlans(patientUUID: patientUUID)
+        try await populateCarePlans(patientUUID: patientUUID)
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
-            duration: .hours(12), targetValues: [OCKOutcomeValue(2000.0, units: "Steps")])
+            duration: .hours(12), targetValues: [OCKOutcomeValue(500.0, units: "Calories")])
            /*
                    TODOy: You need to tie an OCKCarePlan to each HealthKit task. There was a
-                   a method added recently in Extensions/OCKStore.swift to assist with this. Use this method here
+                   a method added recently in Extensions/OCKStore.swift to assist with this. Use this method heres
                    and write a comment and state if it's an "instance method" or "type method". If you
                    are trying to copy the method to this file, you are using the code incorrectly. Be
                    sure to understand the difference between a type method and instance method.
                    */
 
-           try await OCKStore.getCarePlanUUIDs() // This is a type method
-        var steps = OCKHealthKitTask(
-            id: TaskID.steps,
-            title: "Steps",
-            carePlanUUID: carePlan.uuid,
-            schedule: schedule,
-            healthKitLinkage: OCKHealthKitLinkage(
-                quantityIdentifier: .stepCount,
-                quantityType: .cumulative,
-                unit: .count()))
-        steps.asset = "figure.walk"
-        try await addTasksIfNotPresent([steps])
+           let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs() // This is a type method
+
+        var activeEnergy = OCKHealthKitTask(
+                                            id: TaskID.activeEnergy,
+                                            title: "Active Energy Burned",
+                                            carePlanUUID: carePlanUUIDs[.stat],
+                                            schedule: schedule,
+                                            healthKitLinkage: OCKHealthKitLinkage(
+                                                                    quantityIdentifier: .activeEnergyBurned,
+                                                                    quantityType: .discrete,
+                                                                    unit: .largeCalorie()))
+           activeEnergy.card = .numericProgress
+           activeEnergy.instructions = "Imports your active energy burned data."
+           activeEnergy.asset = "repeat.circle"
+
+           var flightsClimbed = OCKHealthKitTask(
+                                               id: TaskID.flightsClimbed,
+                                               title: "Flights Climbed",
+                                               carePlanUUID: carePlanUUIDs[.stat],
+                                               schedule: schedule,
+                                               healthKitLinkage: OCKHealthKitLinkage(
+                                                quantityIdentifier: .flightsClimbed,
+                                                quantityType: .discrete,
+                                                unit: .count()))
+           flightsClimbed.card = .labeledValue
+           flightsClimbed.instructions = "Imports your flights climbed data."
+           flightsClimbed.asset = "figure.stairs"
+        try await addTasksIfNotPresent([activeEnergy, flightsClimbed])
     }
 }

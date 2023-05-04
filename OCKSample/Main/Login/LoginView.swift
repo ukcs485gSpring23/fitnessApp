@@ -57,7 +57,7 @@ struct LoginView: View {
                 Text("Sign Up").tag(1)
             }
             .pickerStyle(.segmented)
-            .background(Color(FontColorKey.defaultValue))
+            .background(Color(TintColorKey.defaultValue))
             .cornerRadius(20.0)
             .padding()
 
@@ -164,16 +164,11 @@ struct LoginView: View {
             }
             Spacer()
         }
-        /*   .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
-                                                               Color(tintColor)]),
-                                   startPoint: .center,
-                                   endPoint: .top))*/
 
         .background(RadialGradient(gradient:
                                     Gradient(colors: [Color(.lightGray),
                                                       Color(.darkGray)]),
                                    center: .center, startRadius: 150, endRadius: 300 ))
-    //    .background(Color(TintColorKey.defaultValue))
     }
 }
 

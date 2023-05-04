@@ -30,18 +30,6 @@ class CareKitTaskViewModel: ObservableObject {
         self.storeManager = storeManager ?? StoreManagerKey.defaultValue
     }
 
-    func getCarePlanID() async -> String? {
-        guard (try? await User.current()) != nil,
-              let personUUIDString = try? await Utility.getRemoteClockUUID().uuidString else {
-            return nil
-        }
-        var query = OCKCarePlanQuery(for: Date())
-        query.patientIDs = [personUUIDString]
-        query.ids = [CarePlanID.checkIn.rawValue]
-        var foundCarePlan = try? await storeManager.store.fetchAnyCarePlans(query: query)
-        return foundCarePlan?[0].remoteID
-    }
-
     // MARK: Intents
     func addTask() async {
         guard let appDelegate = AppDelegateKey.defaultValue else {
@@ -69,18 +57,10 @@ class CareKitTaskViewModel: ObservableObject {
                                              targetValues: [OCKOutcomeValue(1000, units: "goals")],
                                              duration: .allDay)
             chosenSchedule = OCKSchedule(composing: [element])
-        default:
-            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+
         }
 
         let uniqueId = UUID().uuidString // Create a unique id for each task
-
-        /*Update to work
-        var CPID: String? = nil
-        let tempCPID = await getCarePlanID()
-        if let unwrap = tempCPID {
-            CPID = unwrap
-        }*/
 
         var task = OCKTask(id: uniqueId,
                            title: title,
@@ -123,8 +103,7 @@ class CareKitTaskViewModel: ObservableObject {
                                              targetValues: [OCKOutcomeValue(1000, units: "goals")],
                                              duration: .allDay)
             chosenSchedule = OCKSchedule(composing: [element])
-        default:
-            chosenSchedule = OCKSchedule.dailyAtTime(hour: 0, minutes: 0, start: Date(), end: nil, text: nil)
+
         }
         let uniqueId = UUID().uuidString // Create a unique id for each task
         var healthKitTask = OCKHealthKitTask(id: uniqueId,
