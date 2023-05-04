@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import CareKit
 
-@main
+      @main
 struct OCKSampleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.tintColor) var tintColor

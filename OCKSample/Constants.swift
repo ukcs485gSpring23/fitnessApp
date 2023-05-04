@@ -74,26 +74,66 @@ enum Constants {
     static let requestSync = "requestSync"
     static let progressUpdate = "progressUpdate"
     static let finishedAskingForPermission = "finishedAskingForPermission"
-    static let completedFirstSyncAfterLogin = "completedFirstSyncAfterLogin"
+    static let shouldRefreshView = "shouldRefreshView"
     static let userLoggedIn = "userLoggedIn"
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
+    static let card = "card"
+    static let survey = "survey"
+
 }
 
 enum MainViewPath {
     case tabs
 }
 
+enum CareKitCard: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case button = "Button"
+    case checklist = "Checklist"
+    case featured = "Featured"
+    case grid = "Grid"
+    case instruction = "Instruction"
+    case labeledValue = "Labeled Value"
+    case link = "Calorie Calculator"
+    case numericProgress = "Active Energy Burned"
+    case simple = "Simple"
+    case survey = "Survey"
+    case custom = "Calories Consumed"
+    case custom2 = "QOTD"
+}
+
+enum Schedules: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case daily = "Daily"
+    case weekly = "Weekly"
+    case everyOtherDay = "Every Other Day"
+}
+
 enum TaskID {
-    static let doxylamine = "doxylamine"
-    static let nausea = "nausea"
+    static let logWorkout = "Log Workout"
+    static let run = "run"
     static let stretch = "stretch"
     static let kegels = "kegels"
     static let steps = "steps"
+    static let calorieCalculator = "Calorie Calculator"
+    static let activeEnergy = "Active Energy"
+    static let flightsClimbed = "Flights Climbed"
+    static let calorie = "calorie"
+    static let qotd = "qotd"
+    static let strengthTraining = "Strength Training"
 
     static var ordered: [String] {
-        [Self.steps, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.qotd, Self.calorieCalculator, Self.calorie,
+         Self.activeEnergy, Self.strengthTraining, Self.logWorkout,
+         Self.run, Self.flightsClimbed]
     }
+}
+
+enum CarePlanID: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case stat
+    case input
 }
 
 enum UserType: String, Codable {
@@ -105,6 +145,12 @@ enum UserType: String, Codable {
         return [UserType.patient.rawValue,
                 UserType.none.rawValue]
     }
+}
+
+enum ButtonOption: CaseIterable {
+    case isZero
+    case goalMet
+    case goalFailed
 }
 
 enum InstallationChannel: String {

@@ -29,20 +29,21 @@ struct LoginView: View {
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var signupLoginSegmentValue = 0
+    @State var email: String = ""
 
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("CareKit Sample App")
+            Text("CrFit")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .padding()
             // Change this image to something that represents your application
-            Image("exercise.jpg")
+            Image("crLogo.png")
                 .resizable()
                 .frame(width: 150, height: 150, alignment: .center)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color(.white), lineWidth: 4))
+               // .clipShape(Circle())
+                .overlay(Rectangle().stroke(Color(.black), lineWidth: 4))
                 .shadow(radius: 10)
                 .padding()
 
@@ -56,7 +57,7 @@ struct LoginView: View {
                 Text("Sign Up").tag(1)
             }
             .pickerStyle(.segmented)
-            .background(Color(tintColorFlip))
+            .background(Color(TintColorKey.defaultValue))
             .cornerRadius(20.0)
             .padding()
 
@@ -85,6 +86,12 @@ struct LoginView: View {
                         .background(.white)
                         .cornerRadius(20.0)
                         .shadow(radius: 10.0, x: 20, y: 10)
+
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
                 default:
                     EmptyView()
                 }
@@ -103,7 +110,8 @@ struct LoginView: View {
                                                username: usersname,
                                                password: password,
                                                firstName: firstName,
-                                               lastName: lastName)
+                                               lastName: lastName,
+                                               email: email)
                     }
                 default:
                     Task {
@@ -156,10 +164,11 @@ struct LoginView: View {
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
-                                                               Color(tintColor)]),
-                                   startPoint: .top,
-                                   endPoint: .bottom))
+
+        .background(RadialGradient(gradient:
+                                    Gradient(colors: [Color(.lightGray),
+                                                      Color(.darkGray)]),
+                                   center: .center, startRadius: 150, endRadius: 300 ))
     }
 }
 
