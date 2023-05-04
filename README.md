@@ -69,18 +69,23 @@ What features were added by you, this should be descriptions of features added f
 -->
 ## Contributions/Features
 User Adding Tasks
+
 When in the app, the user navigates to the profile view. In this view, they click on “Add Workout Goal.” Here they are able to customize their task by schedule, instructions, title, and card view. Once the add task button is pressed, the task will appear in the CareKitView.
 
 OCKTasks/HealthKitTasks/OCKCarePlans
+
 There are many different task cards that appear in the care view. All of these OCKTasks are there to collect information about the user and customize their profile/experience. OCKHealthKitTasks are there to help the user record information that their phone collects and match it to their current goals. Tasks are added to one of two different care plans based on the type of input.
 
 Custom Cards
+
 I created custom cards for the purposes of my app. This includes calories consumed which gives a thumbs up or thumbs down based on how close you are to your goal. The other one is quote of the day which saves a motivational quote of the day to the user's care view.
 
 Surveys
+
 There are two surveys in the app. One acts as an end of day check in, in which the user submits their total workout time for the day as well as their goal workout time. In the other survey, the user puts in their current weight, their goal weight, and the amount of weeks until they wish to meet their goal. The survey will calculate the average lbs/week the user must lose/gain.
 
 Insights
+
 I created many different scatter, line, and bar charts for the app. These charts are based on data collected form surveys, OCKTasks, and OCKHealthKitTasks.
 
 
